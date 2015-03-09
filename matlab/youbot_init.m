@@ -25,13 +25,13 @@ handles.wheelJoints = wheelJoints;
 handles.hokuyo1 = hokuyo1;
 handles.hokuyo2 = hokuyo2;
 
-[res xyzSensor] = vrep.simxGetObjectHandle(id, 'xyzSensor', vrep.simx_opmode_oneshot_wait); vrchk(vrep, res);
-[res rgbSensor] = vrep.simxGetObjectHandle(id, 'rgbSensor', vrep.simx_opmode_oneshot_wait); vrchk(vrep, res);
-[res rgbdCasing] = vrep.simxGetObjectHandle(id, 'rgbdSensor', vrep.simx_opmode_oneshot_wait); vrchk(vrep, res);
+%[res xyzSensor] = vrep.simxGetObjectHandle(id, 'xyzSensor', vrep.simx_opmode_oneshot_wait); vrchk(vrep, res);
+%[res rgbSensor] = vrep.simxGetObjectHandle(id, 'rgbSensor', vrep.simx_opmode_oneshot_wait); vrchk(vrep, res);
+%[res rgbdCasing] = vrep.simxGetObjectHandle(id, 'rgbdSensor', vrep.simx_opmode_oneshot_wait); vrchk(vrep, res);
 
-handles.xyzSensor = xyzSensor;
-handles.rgbSensor = rgbSensor;
-handles.rgbdCasing = rgbdCasing;
+%handles.xyzSensor = xyzSensor;
+%handles.rgbSensor = rgbSensor;
+%handles.rgbdCasing = rgbdCasing;
 
 [res ref] = vrep.simxGetObjectHandle(id, 'youBot_center', vrep.simx_opmode_oneshot_wait); vrchk(vrep, res);
 [res armRef] = vrep.simxGetObjectHandle(id, 'youBot_ref', vrep.simx_opmode_oneshot_wait); vrchk(vrep, res);
@@ -79,9 +79,9 @@ handles.armJoints = armJoints;
 
 handles.mapLooker = mapLooker;
 
-[res landmarks] = vrep.simxGetObjectHandle(id, 'Landmarks', vrep.simx_opmode_oneshot_wait); vrchk(vrep, res);
+%[res landmarks] = vrep.simxGetObjectHandle(id, 'Landmarks', vrep.simx_opmode_oneshot_wait); vrchk(vrep, res);
 
-handles.landmarks = landmarks;
+%handles.landmarks = landmarks;
 
 
 % Stream wheel angles, Hokuyo data, and robot pose (see usage below)
