@@ -74,7 +74,7 @@
 
 <p>First, follow the <a href="setup.html">setup procedure</a> to get your laptop ready.</p>
 
-<p>The sections below provide more details about the youBot's sensors, actuators, and gripper.</p>
+<p>The sections below provide more details about the youBot's sensors and actuators.</p>
 
 <h2>Names of V-REP Components</h2>
 
@@ -88,7 +88,7 @@
 
 <h2>Signals for Controlling the youBot's Sensors and Gripper</h2>
 
-<p>The youBot's sensors can be turned on or off through following V-REP signal: <code>handle_xy_sensor</code>. (See for instance <a href="#simxSetIntegerSignal">simxSetIntegerSignal</a>.) The value of <code>handle_xyz_sensor</code> controls the depth camera:</p>
+<p>The youBot's sensors can be turned on or off through following V-REP signal: <code>handle_xy_sensor</code>. (See for instance <a href="#simxSetIntegerSignal">simxSetIntegerSignal</a>.) The value of <code>handle_xy_sensor</code> controls the depth camera:</p>
 
 <ul>
 <li><code>handle_xy_sensor</code> set to 0 (or undefined): the sensor is off.</li>
@@ -100,7 +100,7 @@
 
 <p>The signal <code>handle_xy_sensor</code> only control whether V-REP is computing what the sensors see. Setting one of these signals to 1 or 2 will <b>not</b> make V-REP send the data over to Matlab. Whether and how the data is sent to Matlab is controlled via <a href="#simxReadVisionSensor">simxReadVisionSensor</a> or <a href="#simxGetVisionSensorImage2">simxGetVisionSensorImage2</a> and <a href="http://www.coppeliarobotics.com/helpFiles/en/remoteApiConstants.htm#operationModes">remote operation modes</a> (such as <em>streaming</em>, <em>oneshot</em>, etc.).
 
-<p>It is generally ok to leave the Hokuyo sensor continuously on, and ok to get its data with the <em> streaming</em> operation mode (see the <a href="https://github.com/ULgRobotics/trs/blob/master/youbot/youbot.m">example script</a>).</p>
+<p>It is generally ok to leave the Hokuyo sensor continuously on, and ok to get its data with the <em> streaming</em> operation mode (see the <a href="https://github.com/ULgRobotics/trs/blob/master/youbot/youbot.m">example script</a> on the original TRS page).</p>
 
 <p>The <code>displaylasers</code> signal turns the V-REP laser display on or off. When <code>displaylasers</code> is set (whatever its value), V-REP displays red rays along the scanning lines of the Hokuyo. The only purpose served by this signal is illustration, and displaying the lasers slows V-REP down. You will generally want to keep this function off.</p>
 
