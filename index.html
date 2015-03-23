@@ -22,7 +22,11 @@
 
     <div class="content_body">
       <div id="menu">
-        <a class="top" href="index.html">TRS</a> <a class="submenu" href="index.html#emor">Mobile Robots (EMOR)</a> <a class="submenu" href="index.html#mot">TRS</a> <a href="setup.html">Setup</a> <a class="submenu" href="setup.html#com">Components</a> <a class="submenu" href="setup.html#install">Install</a> <a class="submenu" class="bottom" href="setup.html#shoot">Troubleshoot</a> <a href="project.html">Project</a> <a class="submenu" href="project.html#def">Definition</a>
+        <a class="top" href="index.html">TRS</a>
+        <a class="submenu" href="index.html#emor">Mobile Robots (EMOR)</a>
+        <a href="setup.html">Setup</a> <a class="submenu" href="setup.html#com">Components</a>
+        <a class="submenu" href="setup.html#install">Install</a> <a href="project.html">Project</a>
+        <a class="submenu" href="project.html#def">Definition</a>
         <a class="submenu" href="project.html#prog">Programming</a>
         <a class="submenu" href="project.html#doc">Documentation</a>
         <a class="submenu" href="project.html#api">API</a>
@@ -36,7 +40,7 @@
         <a id="emor" name="emor"></a>
         <h1>Mobile Robots (EMOR)</h1>
 
-        <p>The tutorial part of the Mobile Robots (EMOR) course at The Faculty of Electronics and Information Technology, Warsaw University of Technology is realized as <a href="index.html#mot">TRS</a>.</p>
+        <p>The tutorial part of the Mobile Robots (EMOR) course at The Faculty of Electronics and Information Technology, Warsaw University of Technology is realized as <a href="http://ulgrobotics.github.io/trs/index.html">TRS</a>.</p>
 
         <p>For more informations please refer to <a href="https://studia.elka.pw.edu.pl">students' private pages</a> (groups, lectures) and <a href="https://robotyka.ia.pw.edu.pl/twiki/bin/view/Courses/EMOR15L">tutorial pages</a> (tutorials).</p>
 
@@ -47,22 +51,6 @@
 
           <li>a page that presents the <a href="project.html">project definition</a>: objectives, milestones, a description of the robot and the documentation of the Matlab functions that access the robot's sensors and actuators,</li>
         </ul>
-
-
-        <a id="mot" name="mot"></a>
-        <h1>TRS</h1>
-
-        <p style="font-weight: bold">TRS is an open-source recipe for organizing a master-level robotics project. It relies on a cross-platform robot development and simulation environment that can be installed in five minutes and that allows students to write control, navigation, vision or manipulation algorithms in a hundred lines of Matlab or Python code. TRS contains a project structure (documentation, objectives, milestones), and the software skeleton for running the project (simulator models, Matlab code examples, install instructions). It is freely available and extendable.</p>
-
-        <p>Because working with hardware is time-consuming, many Master-level and PhD-level robotics courses leave hardware issues aside, to give the students time to study theoretical concepts and information-processing algorithms. Unfortunately, hardware-free courses often come with no hands-on exercises, which impedes learning. Here, we consider one solution to this problem: allowing students to gain practical experience in a simulated environment. Open-source simulators have existed for a long time, but their limited ease-of-use made them impractical for teaching. Ease of use is crucial in teaching: The software must be robust, multi-platform, and its installation has to be trivial. <a href="http://www.coppeliarobotics.com">V-REP</a>, the simulator on which TRS is based, can be installed on Linux, OSX and Windows simply by uncompressing zip archive.</p>
-
-        <p>Software development is another major challenge in robot development. TRS is based on the <a href="http://petercorke.com/Robotics_Toolbox.html">Robotics Toolbox for MATLAB</a> (RTB), a library of robot-oriented software building blocks. Its Matlab implementation makes it accessible to branches of engineering where fluency in C++ is not expected.</p>
-
-        <p>TRS is an environment, based on V-REP and RTB, that allows students to control a robot from Matlab. The environment consists of a set of Matlab scripts, and a V-REP file modeling a mobile robot and a building floor. Running a single Matlab command establishes a connection between Matlab and V-REP. The user is then able to recover sensor data (images, scans, odometry), process those data, and send commands to the robot's actuators.</p>
-
-        <p>An understanding of the simulator itself is not required, as all the programming is done through the Matlab interface.</p>
-
-        <p>The TRS recipe is freely distributed via a <a href="https://github.com/ULgRobotics/trs">GitHub repository</a>
 
       </div>
 
