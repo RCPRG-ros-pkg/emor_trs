@@ -25,6 +25,8 @@
         <a href="setup.html">Setup</a>
 	<a href="project1.html">Project 1</a>
 	        <a class="submenu" href="project1.html#description">Description</a>
+	        <a class="submenu" href="project1.html#circle">Circle</a>
+	        <a class="submenu" href="project1.html#square">Square</a>
 	<a href="api.html">API Documentation</a>
 	<a href="tips.html">Tips & Tricks</a>
 	<a href="troubleshooting.html">Troubleshooting</a>
@@ -35,32 +37,47 @@
 <a id="description" name="description"></a>
 <h1 style="margin-top: 0">Description</h1>
 
-<p>The goal of the first tutorial is to program a youBot to move along two trajectories.</p>
+<p>There are two major goals of the first EMOR tutorial:</p>
+<ol>
+  <li>Installation of the required software</li>
+  <li>Writing two simple programs enabling youBot to mova along two trajectories, i.e. a circle and a square</li>
+</ol>
 
-<p>The first trajectory the robot has to follow is a circle.</p>
+During the first meeting the students can get grades for:
+<ol>
+  <li>Cloning emor_trs git repository (0.5p)</li>
+  <li>Installation of V-Rep (0.5p)</li>
+  <li>Preparation of Matlab V-Rep bindings (0.5p)</li>
+  <li>Installation of RVC toolbox for Matlab (0.5p)</li>
+  <li>Making the abovedescribed software packages to work together (1p)</li>
+</ol>
+The description the installation procedure can be found at <a href="setup.html">setup</a> website.
+
+Whereas their homework is to :
+<ol>
+  <li>Generation of a circular trajectory (2p)</li>
+  <li>Generation of a "square  trajectory" (2p)</li>
+</ol>
+In both cases they should write program on the basis of the exercise01.m file, by modifying the section between the
+<b>% EMOR exercise 01 begin</b> and <b>% EMOR exercise end</b> comments.
+
+
+
+<a id="circle" name="circle"></a>
+<h1>Following of a circle trajectory</h1>
+
+<p>The first trajectory the youBot robot has to follow is a circle.</p>
 
 <div class="figure" style="width: 580px"><div><img style="border: 1px solid black; width: 560px" src="raster/vrep-circle.jpg" alt="circle" /></div></div>
+
+<a id="square" name="square"></a>
+<h1>Following of a square trajectory</h1>
 
 <p>The second trajectory is four egdes of a square. You can control one of the youBot that can move around a virtual scene. You need to provide the youBot with a program that allows it to move along egdes of a square and visit all vertices. When the robot reaches the first vertex, it stops.</p>
 
 <div class="figure" style="width: 580px"><div><img style="border: 1px solid black; width: 560px" src="raster/vrep-square.jpg" alt="square" /></div></div>
 
 <p>The lenght of the edge of the square should be 1m. You have to modify file <code>exercise01.m</code></p>
-
-<a id="grades" name="grades"></a>
-<h1>Mobile Robots (EMOR)</h1>
-
-<ol style="list-style-type: upper-alpha;">
-<li>Setup.
-  <ol>
-  <li>V-Rep setup</li>
-  <li>Matlab setup</li>
-  <li>git repository download</li>
-  <li>check if they work together</li>
-  </ol>
-</li>
-<li>Modification of the exercise01.m file.</li>
-</ol>
 
 
 
