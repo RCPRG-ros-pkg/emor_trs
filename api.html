@@ -22,55 +22,21 @@
     <div class="content_body">
       <div id="menu">
         <a class="top" href="index.html">TRS</a>
-        <a class="submenu" href="index.html#emor">Mobile Robots (EMOR)</a>
-        <a href="setup.html">Setup</a> <a class="submenu" href="setup.html#com">Components</a>
-        <a class="submenu" href="setup.html#install">Install</a> <a href="project.html">Project</a>
-        <a class="submenu" href="project.html#def1">Tutorial 1 Definition</a>
-        <a class="submenu" href="project.html#def2">Tutorial 2 Definition</a>
-        <a class="submenu" href="project.html#def3">Tutorial 3 Definition</a>
-        <a class="submenu" href="project.html#prog">Programming</a>
-        <a class="submenu" href="project.html#doc">Documentation</a>
-        <a class="submenu" href="project.html#api">API</a>
-        <a class="submenu" href="project.html#mtips">Matlab Tips</a>
-        <a class="submenu" href="project.html#ytips">YouBot Tips</a>
-        <a class="submenu bottom" href="project.html#shoot">Troubleshoot</a>
+        <a href="setup.html">Setup</a>
+	<a href="project1.html">Project 1</a>
+	<a href="api.html">API Documentation</a>
+	        <a class="submenu" href="api.html#prog">youBot Programming</a>
+	        <a class="submenu" href="api.html#api">V-Rep API</a>
+	        <a class="submenu" href="api.html#doc">Documentation</a>
+	<a href="tips.html">Tips & Tricks</a>
+	<a href="troubleshooting.html">Troubleshooting</a>
       </div>
 
       <div class="content">
       
-        <a id="def1" name="def1"></a>
-        <h1 style="margin-top: 0">Tutorial 1 Definition</h1>
-
-<p>The goal of the first tutorial is to program a youBot to move along egdes of a square. You can control one of the youBot that can move around a virtual scene. You need to provide the youBot with a program that allows it to move along egdes of a square and visit all vertices. When the robot reaches the first vertex, it stops.</p>
-
-<div class="figure" style="width: 580px"><div><img style="border: 1px solid black; width: 560px" src="raster/vrep-square.jpg" alt="square" /></div></div>
-
-<p>The lenght of the edge of the square should be 1m. You have to modify file <code>exercise01.m</code></p>
-
-<h2>Milestones</h2>
-
-<ol style="list-style-type: upper-alpha;">
-<li>Setup.
-  <ol>
-  <li>V-Rep setup</li>
-  <li>Matlab setup</li>
-  <li>git repository download</li>
-  <li>check if they work together</li>
-  </ol>
-</li>
-<li>Modification of the exercise01.m file.</li>
-</ol>
-
-        <a id="def2" name="def2"></a>
-        <h1 style="margin-top: 0">Tutorial 2 Definition</h1>
-<p>To be announced.</p>
-
-        <a id="def2" name="def2"></a>
-        <h1 style="margin-top: 0">Tutorial 3 Definition</h1>
-<p>To be announced.</p>
 
 <a id="prog" name="prog"></a>
-<h1>Programming the youBot</h1>
+<h1>Programming of the youBot</h1>
 
 <p>First, follow the <a href="setup.html">setup procedure</a> to get your laptop ready.</p>
 
@@ -104,34 +70,6 @@
 
 <p>The <code>displaylasers</code> signal turns the V-REP laser display on or off. When <code>displaylasers</code> is set (whatever its value), V-REP displays red rays along the scanning lines of the Hokuyo. The only purpose served by this signal is illustration, and displaying the lasers slows V-REP down. You will generally want to keep this function off.</p>
 
-
-        <a id="doc" name="doc"></a>
-<h1>Documentation And Useful Links</h1>
-
-
-<p>The Robotics Toolbox's documentation is available <a href="http://petercorke.com/Robotics_Toolbox.html">here</a>.</p>
-
-<p>The documentation of the V-REP simulator is available <a href="http://www.v-rep.eu/helpFiles/index.html">here</a> (also available via the Help menu in V-REP). Within the doc, the two most important pages are:</p>
-<ul>
-<li>The <a href="http://www.v-rep.eu/helpFiles/en/simulation.htm">Simulation</a> and <a href="http://www.v-rep.eu/helpFiles/en/simulationPropertiesDialog.htm">Simulation settings dialog</a>, that explain how the simulator works.
-</li>
-<li>The <a href="http://www.v-rep.eu/helpFiles/en/remoteApiOverview.htm">Remote API</a>, that allows you to speak to V-REP through the network:
-  <ul>
-    <!--<li><a href="http://www.v-rep.eu/helpFiles/en/remoteApiClientSide.htm">Enabling the Remote API - client side</a></li>-->
-    <li><a href="http://www.v-rep.eu/helpFiles/en/remoteApiServerSide.htm">Enabling the Remote API - server side</a>: Read if you want to enable the <em>continuous</em> service, for instance to allow Matlab to start/stop the simulation. <b>Do not enable the <em>syncSimTrigger</em> option, as you will not be allowed to do so during the project evaluation.</b></li>
-    <li><a href="http://www.v-rep.eu/helpFiles/en/remoteApiModusOperandi.htm">Remote API modus operandi</a>: Explains  the network-related client-server issues.</li>
-    <li><a href="http://www.v-rep.eu/helpFiles/en/remoteApiConstants.htm">Remote API constants</a></li>
-    <li><a href="http://www.v-rep.eu/helpFiles/en/remoteApiFunctions.htm">Remote API functions (C/C++)</a></li>
-    <li><a href="http://www.v-rep.eu/helpFiles/en/remoteApiFunctionsPython.htm">Remote API functions (Python)</a></li>
-    <li><a href="http://www.v-rep.eu/helpFiles/en/remoteApiFunctionsMatlab.htm">Remote API functions (Matlab)</a></li>
-  </ul>
-</li>
-</ul>
-
-<p>Other useful tools:</p>
-<ul>
-<li><a href="http://meshlab.sourceforge.net">MeshLab</a> is an open-source graphical app for manipulating meshes. For instance, you can use it to inspect shapes from the V-REP environment. In V-REP, click on a shape and use the <em>Export as OBJ</em> menu to write the shape to a file. In MeshLab, you can for instance use the ruler tool <img src="raster/ruler.png" class="txt" alt="ruler" style="border: 1px solid black;"> to measure the length of the object.</li>
-</ul>
 
 
         <a id="api" name="api"></a>
@@ -266,62 +204,38 @@
 </ul>
 
 
-        <a id="mtips" name="mtips"></a>
-<h1>Matlab Tips</h1>
 
-<h2>Avoiding Loops</h2>
 
-<p>Matlab is an interpreted language. Despite recent progress in the JIT accelerator, running loops in Matlab is still <em>much</em> slower than running loops in native code. Since most Matlab functions rely on a C implementation of large loops, it is good practice to always prefer calling a function over writing a loop when handling large datatypes. In your project, the two datatypes that you need to handle with care are images and point clouds (from the RGB camera, or from the 2D/3D laser scanners). <b>Handling images and point clouds with Matlab functions or MEX functions instead of Matlab loops will often make your code 100 times faster.</b></p>
+<a id="doc" name="doc"></a>
+<h1>Documentation And Useful Links</h1>
 
-<p>An example of the computational cost of flipping an image with a loop vs. a Matlab function is provided <a href="https://github.com/ULgRobotics/trs/blob/master/matlab/test_loop_vs_native.m">here</a>.</p>
 
-<h2>Running Code from Files</h2>
+<p>The Robotics Toolbox's documentation is available <a href="http://petercorke.com/Robotics_Toolbox.html">here</a>.</p>
 
-<p>The Matlab JIT accelerator doesn't optimize code typed into the console. To verify this behavior, run the function above by typing <code>test_loop_vs_native</code> in the console, then by copy-pasting the contents of the <code>test_loop_vs_native</code> function directly into the console. As a result of this behavior, always run your code from <code>.m</code> files.</p>
-
-        <a id="ytips" name="ytips"></a>
-<h1>YouBot Tips</h1>
-
-<h2>Unintentional Movements</h2>
-
-<p>V-REP does a pretty good job of simulating the real world. This can sometimes lead to unexpected problems. For instance, if no input is given to the wheels and the arm is swung back and front, the robot will move back and forth (slightly). In the third example below, you can verify that the final robot position is about a centimeter further than the initial position.</p>
-
-<h2>Physics Engine</h2>
-
-We recommend using the ODE engine.
-
-<h2>Use the Toolbox!</h2>
-
-There's plenty of functions in the Matlab Robot Toolbox that will help you with high-level algorithms (path planning, vision, ...), but also low-level computations (pose transformation, angle distance, ...). Don't forget to use them!
-
-<h2>Useful Functions/Tools</h2>
-
+<p>The documentation of the V-REP simulator is available <a href="http://www.v-rep.eu/helpFiles/index.html">here</a> (also available via the Help menu in V-REP). Within the doc, the two most important pages are:</p>
 <ul>
-<li>The Matlab <code>inpolygon</code> function</li>
+<li>The <a href="http://www.v-rep.eu/helpFiles/en/simulation.htm">Simulation</a> and <a href="http://www.v-rep.eu/helpFiles/en/simulationPropertiesDialog.htm">Simulation settings dialog</a>, that explain how the simulator works.
+</li>
+<li>The <a href="http://www.v-rep.eu/helpFiles/en/remoteApiOverview.htm">Remote API</a>, that allows you to speak to V-REP through the network:
+  <ul>
+    <!--<li><a href="http://www.v-rep.eu/helpFiles/en/remoteApiClientSide.htm">Enabling the Remote API - client side</a></li>-->
+    <li><a href="http://www.v-rep.eu/helpFiles/en/remoteApiServerSide.htm">Enabling the Remote API - server side</a>: Read if you want to enable the <em>continuous</em> service, for instance to allow Matlab to start/stop the simulation. <b>Do not enable the <em>syncSimTrigger</em> option, as you will not be allowed to do so during the project evaluation.</b></li>
+    <li><a href="http://www.v-rep.eu/helpFiles/en/remoteApiModusOperandi.htm">Remote API modus operandi</a>: Explains  the network-related client-server issues.</li>
+    <li><a href="http://www.v-rep.eu/helpFiles/en/remoteApiConstants.htm">Remote API constants</a></li>
+    <li><a href="http://www.v-rep.eu/helpFiles/en/remoteApiFunctions.htm">Remote API functions (C/C++)</a></li>
+    <li><a href="http://www.v-rep.eu/helpFiles/en/remoteApiFunctionsPython.htm">Remote API functions (Python)</a></li>
+    <li><a href="http://www.v-rep.eu/helpFiles/en/remoteApiFunctionsMatlab.htm">Remote API functions (Matlab)</a></li>
+  </ul>
+</li>
+</ul>
+
+<p>Other useful tools:</p>
+<ul>
+<li><a href="http://meshlab.sourceforge.net">MeshLab</a> is an open-source graphical app for manipulating meshes. For instance, you can use it to inspect shapes from the V-REP environment. In V-REP, click on a shape and use the <em>Export as OBJ</em> menu to write the shape to a file. In MeshLab, you can for instance use the ruler tool <img src="raster/ruler.png" class="txt" alt="ruler" style="border: 1px solid black;"> to measure the length of the object.</li>
 </ul>
 
 
 
-
-
-        <a id="shoot" name="shoot"></a>
-<h1>Troubleshooting V-REP</h1>
-
-<h2>Avoiding Mysteriously Dangerous Calls</h2>
-
-<p>For a mysterious reason, calling</p>
-<code class="block">res = vrep.simxReadVisionSensor(id, hokuyo1Handle, vrep.simx_opmode_buffer);</code>
-<p>with only <b>one return value</b> crashes some versions of Matlab. Always use the multi-return call instead:</p>
-<code class="block">[res det auxData auxPacketInfo] = vrep.simxReadVisionSensor(id, hokuyo1Handle, vrep.simx_opmode_buffer);</code>
-
-<h2>V-REP Crashing at Startup, or Matlab Cannot Connect to VREP</h2>
-
-<p>When VREP quits, the port that it was using to listen for connexions is not freed immediately. If your VREP crashes when you try to start it up, or if you cannot connect to VREP from matlab, quit VREP, wait a few dozen seconds, and try again.</p>
-
-
-
-
-      </div>
 
       <div class="trailer_body">
         <div style="width: 100%; display: table;">

@@ -7,7 +7,7 @@
 
   <title>Mobile Robots (EMOR) tutorials</title>
   <link href="style.css" rel="stylesheet">
-
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 </head>
 
 <body>
@@ -22,7 +22,6 @@
     <div class="content_body">
       <div id="menu">
         <a class="top" href="index.html">TRS</a>
-        <a class="submenu" href="index.html#emor">Mobile Robots (EMOR)</a>
         <a href="setup.html">Setup</a>
 	<a href="project1.html">Project 1</a>
 	<a href="api.html">API Documentation</a>
@@ -30,22 +29,26 @@
 	<a href="troubleshooting.html">Troubleshooting</a>
       </div>
 
-      <div class="content">
+<div class="content">
+      
 
-        <a id="emor" name="emor"></a>
-        <h1>Mobile Robots (EMOR)</h1>
+<a id="shoot" name="shoot"></a>
 
-        <p>The tutorial part of the Mobile Robots (EMOR) course at The Faculty of Electronics and Information Technology, Warsaw University of Technology is realized as TRS.</p>
+<h1>Troubleshooting V-REP</h1>
 
-        <p>For more information please refer to <a href="https://studia.elka.pw.edu.pl">students' private pages</a> (groups, lectures) and <a href="https://robotyka.ia.pw.edu.pl/twiki/bin/view/Courses/EMOR15L">tutorial pages</a> (tutorials).</p>
+<h2>Avoiding Mysteriously Dangerous Calls</h2>
 
-        <p>Please refer to:</p>
+<p>For a mysterious reason, calling</p>
+<code class="block">res = vrep.simxReadVisionSensor(id, hokuyo1Handle, vrep.simx_opmode_buffer);</code>
+<p>with only <b>one return value</b> crashes some versions of Matlab. Always use the multi-return call instead:</p>
+<code class="block">[res det auxData auxPacketInfo] = vrep.simxReadVisionSensor(id, hokuyo1Handle, vrep.simx_opmode_buffer);</code>
 
-        <ul>
-          <li>a page that explains how to <a href="setup.html">setup</a> a laptop to work on the project,</li>
+<h2>V-REP Crashing at Startup, or Matlab Cannot Connect to VREP</h2>
 
-          <li>a page that presents the <a href="project.html">project definition</a>: objectives, milestones, a description of the robot and the documentation of the Matlab functions that access the robot's sensors and actuators,</li>
-        </ul>
+<p>When VREP quits, the port that it was using to listen for connexions is not freed immediately. If your VREP crashes when you try to start it up, or if you cannot connect to VREP from matlab, quit VREP, wait a few dozen seconds, and try again.</p>
+
+
+
 
       </div>
 

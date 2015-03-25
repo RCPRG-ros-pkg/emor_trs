@@ -104,7 +104,38 @@ function exercise01()
       % EMOR exercise 01 begin - You can write your code below
       %
       if strcmp(fsm, 'init'),
-         fsm = 'finished';
+         fsm = 'drive_forward';
+      elseif strcmp(fsm, 'drive_forward'),
+         rotVel = 0;
+         forwBackVel = 2;
+         leftRightVel = 0;
+         if youbotPos(2) > 0.5,
+            fsm = 'drive_left'
+         end;
+      elseif strcmp(fsm, 'drive_left'),
+         rotVel = 0;
+         forwBackVel = 0;
+         leftRightVel = 2;
+         if youbotPos(1) > 0.5,
+            fsm = 'drive_backward'
+         end;
+      elseif strcmp(fsm, 'drive_backward'),
+         rotVel = 0;
+         forwBackVel = -2;
+         leftRightVel = 0;
+         if youbotPos(2) < 0,
+            fsm = 'drive_right'
+         end;
+      elseif strcmp(fsm, 'drive_right'),
+         rotVel = 0;
+         forwBackVel = 0;
+         leftRightVel = -2;
+         if youbotPos(1) < 0,
+            fsm = 'finished'
+            rotVel = 0;
+            forwBackVel = 0;
+            leftRightVel = 0;
+         end;
       elseif strcmp(fsm, 'finished'),
          pause(3);
          break;
