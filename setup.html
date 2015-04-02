@@ -24,7 +24,9 @@
         <a class="top" href="index.html">TRS</a>
         <a href="setup.html">Setup</a>
 		<a class="submenu" href="setup.html#com">Components</a>
-        	<a class="submenu" href="setup.html#install">Install</a>
+        	<a class="submenu" href="setup.html#install">Installation</a>
+        	<a class="submenu" href="setup.html#connection_testing">Testing the setup</a>
+        	<a class="submenu" href="setup.html#running">Running the installed system</a>
 	<a href="project1.html">Project 1</a>
 	<a href="api.html">API Documentation</a>
 	<a href="tips.html">Tips & Tricks</a>
@@ -60,8 +62,8 @@ TRS requires a fairly recent version of Matlab. Matlab versions older than 2011 
 
 </ul>
 
-        <a id="install" name="install"></a>
-<h1>Install Procedure</h1>
+<a id="install" name="install"></a>
+<h1>Installation Procedure</h1>
 
 <p>The recommended procedure for setting up your computer is listed below:</p>
 
@@ -101,12 +103,6 @@ git clone https://github.com/RCPRG-ros-pkg/emor_trs.git</code>
 vrep.delete();</code>
         <p>If there is no error, the Matlab bindings to V-REP are loaded! If there is an error, check the steps above, and read <a href="http://www.coppeliarobotics.com/helpFiles/en/remoteApiClientSide.htm">V-REP's Matlab bindings help</a>.</p>
       </li>
-      <li>
-        Startup V-REP (Linux: <code>./vrep.sh</code> from within V-REP's directory), use the menu "File/Open Scene", and open <code>~/emor_trs/youbot/binding_test.ttt</code>. Hit "Start Simulation" in the Simulation menu. Then, back in Matlab, type
-        <code class="block">cd ~/ws_emor/emor_trs/youbot
-binding_test();</code>
-        If you see Matlab replying <em>Number of objects in the scene: 19</em>, everything works!
-      </li>
       
     </ol>
     
@@ -116,18 +112,69 @@ binding_test();</code>
   <li>
     In Matlab, run the <code>startup_robot.m</code> file provided via the Git repository. If you cloned the Git repository in the <code>ws_emor</code> workspace directory, run:
     <code class="block">run('~/ws_emor/emor_trs/matlab/startup_robot.m');</code>
-    <p>This line needs to be run every time Matlab restarts. You may want to add it to your Matlab startup file.</p>
-    <p><strong>Test that the RVC toolbox works:</strong> In Matlab, type
-        <code class="block">rotx(1)</code>
-        If there is no error, P. Corke's RVC toolbox is working! If there is an error, check the steps above and read the toolbox's <a href="http://petercorke.com/Robotics_Toolbox.html">install doc</a>.</p>
-
+    <p>It will download and subsequently run the Peter Corke's Robotics, Vision and Control toolkit.
+    <p>This line needs to be run every time Matlab restarts. However, you may avoid it by adding the script 
+to your Matlab startup file.</p>
   </li>
-  
+</ol>
+
+Please follow the instructions from the next section in order to verify whether the setup works.
+
+<a id="connection_testing" name="connection_testing"></a>
+<h1>Testing the Matlab - V-REP connection</h1>
+<ol class="steps">
+
+	<li> In V-REP simulator (Linux: <code>./vrep.sh</code> from V-REP's directory)
+	<ol class="steps">
+		<li>Use the menu "File/Open Scene" and open <code>~/emor_trs/youbot/binding_test.ttt</code>.</li>
+		<li>Hit "Start Simulation" in the "Simulation" menu.</li>
+	</ol>
+	</li>
+
+	<li> In Matlab (Linux: <code>matlab</code> from any directory)
+	<ol class="steps">
+		<li>Test that the RVC toolbox works. 
+        	<code class="block">rotx(1)</code>
+	        If there is no error, Peter Corke's RVC toolbox is working! If there is an error, check the steps above and read the toolbox's <a href="http://petercorke.com/Robotics_Toolbox.html">install doc</a>.
+		</li>
+		<li>
+			<code class="block">cd ~/ws_emor/emor_trs/youbot
+binding_test();</code>
+		</li>
+
+	</ol>
+	</li>
+
+</ol>
+If you see Matlab replying <em>Number of objects in the scene: 19</em>, everything works!
+
+
+
+
+<a id="running" name="running"></a>
+<h1>Running the installed system</h1>
+
+<p>In order to run the already installed system please perform the following steps:</p>
+
+<ol class="steps">
+  <li> Run Matlab (Linux: simply type <code>matlab</code>).
+	<ol class="steps">
+  		<li>In Matlab run the Peter Corke's Robotics, Vision & Control toolkit. On Linux/Mac:
+			<code class="block">cd ~/ws_emor/emor_trs/matlab
+run('startup_robot.m');</code>
+		</li>
+	</ol>
+  </li>
+
+  <li> Run V-REP simulator (Linux: type <code>./vrep.sh</code> in the V-REP's directory).
+  <li> Test Matlab - V-REP connection as described in <a class="submenu" href="setup.html#connection_testing">Testing the connection</a> section.
 
 </ol>
 
-      </div>
 
+
+
+</div>
       <div class="trailer_body">
         <div style="width: 100%; display: table;">
           <div style="display: table-row">
