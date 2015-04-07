@@ -80,7 +80,7 @@ Your homework is to prepare two scripts, responsible for:
 <il><code>simxGetObjectOrientation</code> - gets current robot orientation (Euler angles). </il>
 <il><code>simxSetJointTargetVelocity</code> - sets velocities for all youbot joints, including wheels. </il>
 </ol>
-However, please analyse the placed below (slightly simplified) code of the <code>exercise01.m</code> file containing the control loop, with the most important lines indicated:
+However, please analyse the pasted below (and slightly simplified) code of the <code>exercise01.m</code> file containing the control loop, with the most important lines indicated:
 <code class="block">
    while true,
 
@@ -112,7 +112,7 @@ However, please analyse the placed below (slightly simplified) code of the <code
 Because those functions are already used in the control loop, you don't in fact need to call them once again.
 Instead, you can simply operate on five variables, explained below:
 
-<p>The robot pose is stored in:
+<p>The first two enable you to access the current robot pose:
 <ol>
   <li><code>youbotPos</code> - youbot Cartesian position (x,y,z) [m] </li>
   <li><code>youbotEuler</code> - youbot orientation [rad] </li>

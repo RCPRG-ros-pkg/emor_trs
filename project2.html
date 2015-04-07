@@ -36,10 +36,10 @@
 <a id="description" name="description"></a>
 <h1 style="margin-top: 0">Description</h1>
 
-<p>The goal of the second EMOR tutorial is to write a program enabling youBot to mova along walls, as presented in the figure below.
-The robot should use laser scanners in order to detect the wall and avoid collisions
+<p>The goal of the second EMOR tutorial is to write a program enabling youBot to <b>move along walls</b>, as presented in the figure below.
+The robot should use laser scanners in order to detect the wall, move along it (i.e. keep the distance) and avoid collisions.
 
-<p>Similarly to the previous tutorial you should write your program on the basis of specially prepared <code>exercise02.m</code> script, by modifying the section between the
+<p>Similarly to the previous tutorial, you should write your program on the basis of specially prepared <code>exercise02.m</code> script, by modifying the section between the
 <b>% EMOR exercise 01 begin</b> and <b>% EMOR exercise end</b> comments.
 
 <p>And analogically, we also prepared a simulation environment in V-REP stored in file <code>exercise02.ttt</code>.
@@ -47,7 +47,30 @@ The robot should use laser scanners in order to detect the wall and avoid collis
 
 <h2>Programming hints</h2>
 
+The motion of the robot should be controlled by variables representing the relative velocities:
+<ol>
+  <li><code>forwBackVel</code> - linear velocity along the x axis of the robot [m/s] </li>
+  <li><code>leftRightVel</code> - linear velocity along the y axis of the robot [m/s] </li>
+  <li><code>rotVel</code> - angular velocity around the z axis of the robot [rad/s] </li>
+</ol>
+
+Additionally, you should gather and analyse data from the lidar sensors.
+In the predefined configuration there are two lidars mounted on the youBot, but the function <code>youbot_hokuyo</code> concatenates them. There are two variables returned by the function:
+<ol>
+  <li><code>pts</code> - a table containing readings i.e. contact points,  in sensor's coordinates, each expressed as [x;y;z;distancetosensor] </li>
+  <li><code>contacts</code> - a table of values <0/1> determining whether an obstactle was detected or the reading corresponds to the maximal sensor range (in this case it is set to 5m) </li>
+</ol>
+
 <h2>Task requirements</h2>
+
+You should write a program that:
+<ol>
+  <li> Analyses the lidar readings in order to find the nearest obstacle (please consider the XY plane readings only). </li>
+  <li> The robot should keep given distance to the wall (e.g. 1m), hence you must compute the relative errors in directions perpendicular and parallel to the wall. </li>
+  <li> The resulting robot speed should be computed on the basis of those errors. </li>
+  <li> Additionally, the robot must always face the wall, hence you must also adequtelly control the angular robot velocity. </li>
+</ol>
+
 
 <div class="figure" style="width: 580px"><div><img style="border: 1px solid black; width: 560px" src="raster/tut_02_path.png" alt="tut2" /></div></div>
 
