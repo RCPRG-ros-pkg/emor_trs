@@ -57,7 +57,7 @@ The motion of the robot should be controlled by variables representing the relat
 Additionally, you should gather and analyse data from the lidar sensors.
 In the predefined configuration there are two lidars mounted on the youBot, but the function <code>youbot_hokuyo</code> concatenates them. There are two variables returned by the function:
 <ol>
-  <li><code>pts</code> - a table containing readings i.e. contact points,  in sensor's coordinates, each expressed as [x;y;z;distancetosensor] </li>
+  <li><code>pts</code> - a table containing readings i.e. contact points,  in sensor's coordinates, each expressed as [x;y;z] </li>
   <li><code>contacts</code> - a table of values <0/1> determining whether an obstactle was detected or the reading corresponds to the maximal sensor range (in this case it is set to 5m) </li>
 </ol>
 
@@ -70,6 +70,19 @@ You should write a program that:
   <li> The resulting robot speed should be computed on the basis of those errors. </li>
   <li> Additionally, the robot must always face the wall, hence you must also adequtelly control the angular robot velocity. </li>
 </ol>
+
+
+<h2 style="margin-top: 0">Grading</h2>
+
+<ol>
+  <li>Processing of the sensory data (1p)</li>
+  <li>Regulator keeping distance from the wall (3p)</li>
+  <li>Regulator responsible for moving the robot along the wall (3p)</li>
+  <li>Regulator keeping the perpendicular orientation of the robot againts the wall (3p)</li>
+</ol>
+
+
+<p><b>Important:</b> You must modify only the indicated section of the <code>exercise02.m</code> script. Modification of other parts of the code are forbidden and will result in zero points from the project. 
 
 
 <div class="figure" style="width: 580px"><div><img style="border: 1px solid black; width: 560px" src="raster/tut_02_path.png" alt="tut2" /></div></div>
