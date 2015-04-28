@@ -37,25 +37,13 @@
 <a id="description" name="description"></a>
 <h1 style="margin-top: 0">Description</h1>
 
-<p>The goal of the third EMOR tutorial is to write a program enabling youBot to <b>localize itself</b> with the use of particle filter.
-This task is broken into two subproblems:
+<p>The goal of the third EMOR tutorial is to write a program enabling youBot to <b>navigate</b>.
+This task is broken into three subtasks:
 <ol>
-  <li>generation of random, yet collision-less trajectory</li>
-  <li>implementation of the particle filter-based localization, executed for each of subsequent robot poses</li>
+  <li>generation of random, yet collision-less trajectory (without any destination)</li>
+  <li>navigation to the destination without the use of map</li>
+  <li>using map for planning of a colision-less trajectory to the destination</li>
 </ol>
-
-The robot should use laser scanners in order to:
-<ol>
-  <li>detect the wall and avoid collisions</li>
-  <li>update the set of particles, each representing a possible (single) robot pose in the form of [x;y;orientation]</li>
-</ol>
-
-Result after the first and after a sequence consisting of several steps should look like this.
-<img style="border: 1px solid black; width: 250px" src="raster/tut_03a_particles.png" alt="tut3a" />
-
-<img style="border: 1px solid black; width: 250px" src="raster/tut_03b_particles.png" alt="tut3b" />
-
-
 
 <p>Similarly to the previous tutorial, you should write your program on the basis of <code>exercise03.m</code> script, by modifying the section between the
 <b>% EMOR exercise begin</b> and <b>% EMOR exercise end</b> comments.
@@ -64,8 +52,16 @@ Result after the first and after a sequence consisting of several steps should l
 <b>You must run it before running your matlab script</b>.
 
 
+<p>The environment used for this task (presented on the left side) was generated from the binary image, with white pixels representing obstacles (presented on the right).
+The image is of size 30px x 30px, whereas the map is of size 15m x 15m.
+<p>
+<img style="border: 1px solid black; height: 250px" src="raster/tut_03_env.png" alt="env" />
 
-<h2>Task requirements - generation of trajectory</h2>
+<img style="border: 1px solid black; height: 250px" src="raster/tut_03_map.png" alt="map" />
+
+
+
+<h2>Task requirements - generation of random trajectory</h2>
 
 You should write a program that:
 <ol>
@@ -75,41 +71,57 @@ You should write a program that:
 </ol>
 As a result the robot should randomly "visit" different parts of the map, without colliding with obstacles.
 
-<h2>Task requirements - particle filter</h2>
 
-On the basis of the program generating the random trajectory you should write a program that:
+<h2>Task requirements - navigation to the place of destination with Bug2</h2>
+
+Write a program implementing the Bug2 algorithm. The basic idea is to move along the line connecting the target and initial point and in the case of being near to the obstacle follow its contour and thus circumnavigate it.
+The program should work as follows:
 <ol>
-  <li> Initialize a set of particles (e.g. a size of 1000), each containing a random robot pose [x;y;orientation]  </li>
+  <li> Find the line connecting initial and target position </li>
+  <li> Rotate towards the goal </li>
+  <li> Move towards the goal until reaching an obstacle </li>
+  <li> Use "following the wall" algorith to avoid the obstacje and depart immediately when it is able to move directly toward the goal (when crosses the "original" line once again). </li>
 </ol>
 
-You will require to implement additional functions, placed in <b>separate matlab scipts</b>: 
+
+<h2>Task requirements - planning with Global dynamic window</h2>
+This algorithm is responsible for finding the optimal route to the goal in the planning phase, i.e. before leaving the initial pose.
+For this purpose it analyses the map generates the path and in an off-line manner.
+When finished, the robot simply follows the generated path.
+The generation of the path works as follows:
 <ol>
-  <li> A function responsible for moving "the robot" - aside of moving the real robot it should update the particle poses one by one by a given pose increment (x,y,orientation) with additional noise (gaussian noise with mean equal to zero and small variance)</li>
-  <li> A function that updates the measurements by computing their gaussian distribution on the basis of distance (d) of the given measurement (x,y), i.e. x and y become in fact a mean_x and mean_y, whereas the variances sigma_x and sigma_y depend on the distance (bigger distance imposes bigger variances)</li>
-  <li> A function that calculates the "importance weight" of each particle on the basis of mismatch between the actual measurements (i.e. readings from the Hokuyo lidars) and the predicted measurements
+  <li> Set the cost of target position (cell) to 0 </li>
+  <li> For a given neighbouring cell find the cell with lowest cost lc, set cost of the currently analysed cell to lc+1 </li>
+  <li> Repeat step 2 for each cell until all cells (including the initial one) have assigned costs </li>
+  <li> Find the path starting from the initial cell to the destination, by selecting the neighbouring cell with smallest cost</li>
 </ol>
 
-
-1) Function for visualization
-2) Resampling - randomly drawing 
-
-
-The environment was generated on the basis of a binary image presented below, 
-15m x 15m x 0.4m
 
 
 <h2 style="margin-top: 0">Grading</h2>
 <ol>
-  <li>Generation of trajectory (3p), including:</li>
+  <li>Generation of a random trajectory (2p), including:</li>
 	<ol>
-  	<li>Moving the robot ahead  until an obstacle enters the "dangerous zone" (2p)</li>
+  	<li>Moving the robot ahead  until an obstacle enters the "dangerous zone" (1p)</li>
   	<li>Random selection of new orientation and rotating the robot (1p)</li>
 	</ol>
-  <li>Particle filter (10p), including</li>
+
+  <li>Navigation to the place of destination with Bug2 (5p)</li>
 	<ol>
-  	<li>Initialize a set of particles (1p)</li>
-  	<li>Visualize particles (1p)</li>
+  	<li>User input of the goal position (x,y) (1p)</li>
+  	<li>Implementation of the Bug2 algorithm (3p)</li>
+  	<li>Dynamic visualization of the realized path point by point (1p)</li>
 	</ol>
+
+  <li>Planning with Global dynamic window (6p)</li>
+	<ol>
+  	<li>Loading and proper "rescaling" the map from map.png file (1p)</li>
+  	<li>User input of the goal position (x,y), with validation whether it is accessible (1p)</li>
+  	<li>Implementation of the "Global dynamic window"-based generation of trajectory (2p)</li>
+  	<li>Drawing the generated trajectory in the  (1p)</li>
+  	<li>Realization of the trajectory (1p)</li>
+	</ol>
+
 </ol>
 
 
@@ -132,7 +144,6 @@ Additionally, you should gather and analyse data from the lidar sensors. There a
 </ol>
 
 
-<img style="border: 1px solid black; width: 300px" src="raster/map.png" alt="map" />
 
 
 </div>
