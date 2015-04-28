@@ -50,11 +50,20 @@ The robot should use laser scanners in order to:
   <li>update the set of particles, each representing a possible (single) robot pose in the form of [x;y;orientation]</li>
 </ol>
 
+Result after the first and after a sequence consisting of several steps should look like this.
+<img style="border: 1px solid black; width: 250px" src="raster/tut_03a_particles.png" alt="tut3a" />
+
+<img style="border: 1px solid black; width: 250px" src="raster/tut_03b_particles.png" alt="tut3b" />
+
+
+
 <p>Similarly to the previous tutorial, you should write your program on the basis of <code>exercise03.m</code> script, by modifying the section between the
 <b>% EMOR exercise begin</b> and <b>% EMOR exercise end</b> comments.
 
 <p>And analogically, we also prepared a simulation environment in V-REP stored in file <code>exercise03.ttt</code>.
 <b>You must run it before running your matlab script</b>.
+
+
 
 <h2>Task requirements - generation of trajectory</h2>
 
@@ -84,8 +93,9 @@ You will require to implement additional functions, placed in <b>separate matlab
 1) Function for visualization
 2) Resampling - randomly drawing 
 
-15m x 15m x 0.4m
 
+The environment was generated on the basis of a binary image presented below, 
+15m x 15m x 0.4m
 
 
 <h2 style="margin-top: 0">Grading</h2>
@@ -122,10 +132,8 @@ Additionally, you should gather and analyse data from the lidar sensors. There a
 </ol>
 
 
+<img style="border: 1px solid black; width: 300px" src="raster/map.png" alt="map" />
 
-<div class="figure" style="width: 580px"><div><img style="border: 1px solid black; width: 560px" src="raster/tut_03a_particles.png" alt="tut3a" /></div></div>
-
-<div class="figure" style="width: 580px"><div><img style="border: 1px solid black; width: 560px" src="raster/tut_03b_particles.png" alt="tut3b" /></div></div>
 
 </div>
       <div class="trailer_body">
