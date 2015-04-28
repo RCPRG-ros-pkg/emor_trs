@@ -25,8 +25,8 @@
         <a href="setup.html">Setup</a>
 	<a href="project1.html">Project 1</a>
 	<a href="project2.html">Project 2</a>
-	        <a class="submenu" href="project2.html#description">Description</a>
-	<a href="project3.html">Project 2</a>
+	<a href="project3.html">Project 3</a>
+	        <a class="submenu" href="project3.html#description">Description</a>
 	<a href="api.html">API Documentation</a>
 	<a href="tips.html">Tips & Tricks</a>
 	<a href="troubleshooting.html">Troubleshooting</a>
@@ -37,10 +37,20 @@
 <a id="description" name="description"></a>
 <h1 style="margin-top: 0">Description</h1>
 
-<p>The goal of the second EMOR tutorial is to write a program enabling youBot to <b>move along walls</b>, as presented in the figure below.
-The robot should use laser scanners in order to detect the wall, move along it (i.e. keep the distance) and avoid collisions.
+<p>The goal of the third EMOR tutorial is to write a program enabling youBot to <b>localize itself</b> with the use of particle filter.
+This task is broken into two subproblems:
+<ol>
+  <li>generation of random, yet collision-less trajectory</li>
+  <li>implementation of the particle filter-based localization, executed for each of subsequent robot poses</li>
+</ol>
 
-<p>Similarly to the previous tutorial, you should write your program on the basis of specially prepared <code>exercise02.m</code> script, by modifying the section between the
+The robot should use laser scanners in order to:
+<ol>
+  <li>detect the wall and avoid collisions</li>
+  <li>update the set of particles, each representing a possible (single) robot pose in the form of [x;y;orientation]</li>
+</ol>
+
+<p>Similarly to the previous tutorial, you should write your program on the basis of <code>exercise02.m</code> script, by modifying the section between the
 <b>% EMOR exercise 01 begin</b> and <b>% EMOR exercise end</b> comments.
 
 <p>And analogically, we also prepared a simulation environment in V-REP stored in file <code>exercise02.ttt</code>.
@@ -55,31 +65,53 @@ The motion of the robot should be controlled by variables representing the relat
   <li><code>rotVel</code> - angular velocity around the z axis of the robot [rad/s] </li>
 </ol>
 
-Additionally, you should gather and analyse data from the lidar sensors.
-In the predefined configuration there are two lidars mounted on the youBot, but the function <code>youbot_hokuyo</code> concatenates them. There are two variables returned by the function:
+Additionally, you should gather and analyse data from the lidar sensors. There are two variables returned by the function:
 <ol>
   <li><code>pts</code> - a table containing readings i.e. contact points,  in sensor's coordinates, each expressed as [x;y;z] </li>
   <li><code>contacts</code> - a table of values <0/1> determining whether an obstactle was detected or the reading corresponds to the maximal sensor range (in this case it is set to 5m) </li>
 </ol>
 
-<h2>Task requirements</h2>
+<h2>Task requirements - generation of trajectory</h2>
 
 You should write a program that:
 <ol>
-  <li> Analyses the lidar readings in order to find the nearest obstacle (please consider the XY plane readings only). </li>
-  <li> The robot should keep given distance to the wall (e.g. 1m), hence you must compute the relative errors in directions perpendicular and parallel to the wall. </li>
-  <li> The resulting robot speed should be computed on the basis of those errors. </li>
-  <li> Additionally, the robot must always face the wall, hence you must also adequtelly control the angular robot velocity. </li>
+  <li> Moves the robot ahead (i.e. along the same orientation) until some of obstacles are near (e.g. in a distance smaller than 0.5m) </li>
+  <li> Randomly selects new the orientation (e.g. from (30, 330) degrees) </li>
+  <li> Rotates the robot so his orientation is the same as the randomly chosen one and starts to move ahead (enters the state from the first point)</li>
+</ol>
+As a result the robot should randomly "visit" different parts of the map, without colliding with obstacles.
+
+<h2>Task requirements - particle filter</h2>
+
+On the basis of the program generating the random trajectory you should write a program that:
+<ol>
+  <li> Initialize a set of particles (e.g. a size of 1000), each containing a random robot pose [x;y;orientation]  </li>
+</ol>
+
+You will require to implement additional functions: 
+<ol>
+  <li> A function responsible for moving "the robot" - aside of moving the real robot it should update the particle poses one by one by a given pose increment (x,y,orientation) with additional noise (gaussian noise with mean equal to zero and small variance)</li>
+  <li> A function that updates the measurements by computing their gaussian distribution on the basis of distance (d) of the given measurement (x,y), i.e. x and y become in fact a mean_x and mean_y, whereas the variances sigma_x and sigma_y depend on the distance (bigger distance imposes bigger variances)</li>
+  <li> A function that calculates the "importance weight" of each particle on the basis of mismatch between the actual measurements (i.e. readings from the Hokuyo lidars) and the predicted measurements
 </ol>
 
 
-<h2 style="margin-top: 0">Grading</h2>
+1) Function for visualization
+2) Resampling - randomly drawing 
 
+
+<h2 style="margin-top: 0">Grading</h2>
 <ol>
-  <li>Processing of the sensory data (1p)</li>
-  <li>Regulator keeping distance from the wall (3p)</li>
-  <li>Regulator responsible for moving the robot along the wall (3p)</li>
-  <li>Regulator keeping the perpendicular orientation of the robot againts the wall (3p)</li>
+  <li>Generation of trajectory (3p), including:</li>
+	<ol>
+  	<li>Moving the robot ahead (1p)</li>
+  	<li>Random selection of new orientation (1p)</li>
+  	<li>Rotating the robot (1p)</li>
+	</ol>
+  <li>Particle filter (10p), including</li>
+	<ol>
+  	<li>Initialize a set of particles (e.g. a size of 1000) (1p)</li>
+	</ol>
 </ol>
 
 
