@@ -50,26 +50,11 @@ The robot should use laser scanners in order to:
   <li>update the set of particles, each representing a possible (single) robot pose in the form of [x;y;orientation]</li>
 </ol>
 
-<p>Similarly to the previous tutorial, you should write your program on the basis of <code>exercise02.m</code> script, by modifying the section between the
-<b>% EMOR exercise 01 begin</b> and <b>% EMOR exercise end</b> comments.
+<p>Similarly to the previous tutorial, you should write your program on the basis of <code>exercise03.m</code> script, by modifying the section between the
+<b>% EMOR exercise begin</b> and <b>% EMOR exercise end</b> comments.
 
-<p>And analogically, we also prepared a simulation environment in V-REP stored in file <code>exercise02.ttt</code>.
+<p>And analogically, we also prepared a simulation environment in V-REP stored in file <code>exercise03.ttt</code>.
 <b>You must run it before running your matlab script</b>.
-
-<h2>Programming hints</h2>
-
-The motion of the robot should be controlled by variables representing the relative velocities:
-<ol>
-  <li><code>forwBackVel</code> - linear velocity along the x axis of the robot [m/s] </li>
-  <li><code>leftRightVel</code> - linear velocity along the y axis of the robot [m/s] </li>
-  <li><code>rotVel</code> - angular velocity around the z axis of the robot [rad/s] </li>
-</ol>
-
-Additionally, you should gather and analyse data from the lidar sensors. There are two variables returned by the function:
-<ol>
-  <li><code>pts</code> - a table containing readings i.e. contact points,  in sensor's coordinates, each expressed as [x;y;z] </li>
-  <li><code>contacts</code> - a table of values <0/1> determining whether an obstactle was detected or the reading corresponds to the maximal sensor range (in this case it is set to 5m) </li>
-</ol>
 
 <h2>Task requirements - generation of trajectory</h2>
 
@@ -88,7 +73,7 @@ On the basis of the program generating the random trajectory you should write a 
   <li> Initialize a set of particles (e.g. a size of 1000), each containing a random robot pose [x;y;orientation]  </li>
 </ol>
 
-You will require to implement additional functions: 
+You will require to implement additional functions, placed in <b>separate matlab scipts</b>: 
 <ol>
   <li> A function responsible for moving "the robot" - aside of moving the real robot it should update the particle poses one by one by a given pose increment (x,y,orientation) with additional noise (gaussian noise with mean equal to zero and small variance)</li>
   <li> A function that updates the measurements by computing their gaussian distribution on the basis of distance (d) of the given measurement (x,y), i.e. x and y become in fact a mean_x and mean_y, whereas the variances sigma_x and sigma_y depend on the distance (bigger distance imposes bigger variances)</li>
@@ -99,27 +84,48 @@ You will require to implement additional functions:
 1) Function for visualization
 2) Resampling - randomly drawing 
 
+15m x 15m x 0.4m
+
+
 
 <h2 style="margin-top: 0">Grading</h2>
 <ol>
   <li>Generation of trajectory (3p), including:</li>
 	<ol>
-  	<li>Moving the robot ahead (1p)</li>
-  	<li>Random selection of new orientation (1p)</li>
-  	<li>Rotating the robot (1p)</li>
+  	<li>Moving the robot ahead  until an obstacle enters the "dangerous zone" (2p)</li>
+  	<li>Random selection of new orientation and rotating the robot (1p)</li>
 	</ol>
   <li>Particle filter (10p), including</li>
 	<ol>
-  	<li>Initialize a set of particles (e.g. a size of 1000) (1p)</li>
+  	<li>Initialize a set of particles (1p)</li>
+  	<li>Visualize particles (1p)</li>
 	</ol>
 </ol>
 
 
-<p><b>Important:</b> You must modify only the indicated section of the <code>exercise02.m</code> script. Modification of other parts of the code are forbidden and will result in zero points from the project. 
+<p><b>Important:</b> You must modify only the indicated section of the <code>exercise03.m</code> script. Modification of other parts of the code are forbidden and will result in zero points from the project. 
 
 
-<div class="figure" style="width: 580px"><div><img style="border: 1px solid black; width: 560px" src="raster/tut_02_path.png" alt="tut2" /></div></div>
+<h2>Programming hints</h2>
 
+The motion of the robot should be controlled by variables representing the relative velocities:
+<ol>
+  <li><code>forwBackVel</code> - linear velocity along the x axis of the robot [m/s] </li>
+  <li><code>leftRightVel</code> - linear velocity along the y axis of the robot [m/s] </li>
+  <li><code>rotVel</code> - angular velocity around the z axis of the robot [rad/s] </li>
+</ol>
+
+Additionally, you should gather and analyse data from the lidar sensors. There are two variables returned by the function:
+<ol>
+  <li><code>pts</code> - a table containing readings i.e. contact points,  in sensor's coordinates, each expressed as [x;y;z] </li>
+  <li><code>contacts</code> - a table of values <0/1> determining whether an obstactle was detected or the reading corresponds to the maximal sensor range (in this case it is set to 5m) </li>
+</ol>
+
+
+
+<div class="figure" style="width: 580px"><div><img style="border: 1px solid black; width: 560px" src="raster/tut_03a_particles.png" alt="tut3a" /></div></div>
+
+<div class="figure" style="width: 580px"><div><img style="border: 1px solid black; width: 560px" src="raster/tut_03b_particles.png" alt="tut3b" /></div></div>
 
 </div>
       <div class="trailer_body">
