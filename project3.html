@@ -27,6 +27,9 @@
 	<a href="project2.html">Project 2</a>
 	<a href="project3.html">Project 3</a>
 	        <a class="submenu" href="project3.html#description">Description</a>
+	        <a class="submenu" href="project3.html#random">Generation of random motion</a>
+	        <a class="submenu" href="project3.html#bug2">Navigation to the place of destination with Bug2</a>
+	        <a class="submenu" href="project3.html#wavefront">Path planning with Wavefront</a>
 	<a href="api.html">API Documentation</a>
 	<a href="tips.html">Tips & Tricks</a>
 	<a href="troubleshooting.html">Troubleshooting</a>
@@ -61,7 +64,8 @@ The image is of size 30px x 30px, whereas the map is of size 15m x 15m.
 
 
 
-<h2>Task requirements - generation of random trajectory</h2>
+<a id="random" name="random"></a>
+<h2>Generation of random motion</h2>
 
 You should write a program that:
 <ol>
@@ -72,7 +76,8 @@ You should write a program that:
 As a result the robot should randomly "visit" different parts of the map, without colliding with obstacles.
 
 
-<h2>Task requirements - navigation to the place of destination with Bug2</h2>
+<a id="bug2" name="bug2"></a>
+<h2>Navigation to the place of destination with Bug2</h2>
 
 Write a program implementing the Bug2 algorithm. The basic idea is to move along the line connecting the target and initial point and in the case of being near to the obstacle follow its contour and thus circumnavigate it.
 The program should work as follows:
@@ -84,7 +89,8 @@ The program should work as follows:
 </ol>
 
 
-<h2>Task requirements - path planning with Wavefront</h2>
+<a id="wavefront" name="wavefront"></a>
+<h2>Path planning with Wavefront</h2>
 This algorithm is responsible for finding the optimal route to the goal in the planning phase, i.e. before leaving the initial pose.
 For this purpose it analyses the map and generates the path and in an off-line manner.
 When finished, the robot simply follows the generated path.
@@ -100,22 +106,22 @@ More detailed description of the Wavefront can be found in the EMOR lectures, as
 
 
 
-<h2 style="margin-top: 0">Grading</h2>
+<h2 style="margin-top: 0">Grading  (13p total)</h2>
 <ol>
-  <li>Generation of a random trajectory (2p), including:</li>
+  <li>Generation of a random trajectory (2p total)</li>
 	<ol>
   	<li>Moving the robot ahead  until an obstacle enters the "dangerous zone" (1p)</li>
   	<li>Random selection of new orientation and rotating the robot (1p)</li>
 	</ol>
 
-  <li>Navigation to the place of destination with Bug2 (5p)</li>
+  <li>Navigation to the place of destination with Bug2 (5p total)</li>
 	<ol>
   	<li>User input of the goal position (x,y), with validation whether it is accessible (1p)</li>
   	<li>Implementation of the Bug2 algorithm (3p)</li>
   	<li>Dynamic visualization of the realized path point by point in the V-REP (1p)</li>
 	</ol>
 
-  <li>Planning with the Wavefront algorithm (6p)</li>
+  <li>Planning with the Wavefront algorithm (6p total)</li>
 	<ol>
   	<li>Loading and proper "rescaling" the map from map.png file (1p)</li>
   	<li>Implementation of the "Wavefront"-based path generation (3p)</li>
