@@ -84,17 +84,19 @@ The program should work as follows:
 </ol>
 
 
-<h2>Task requirements - planning with Global dynamic window</h2>
+<h2>Task requirements - path planning with Wavefront</h2>
 This algorithm is responsible for finding the optimal route to the goal in the planning phase, i.e. before leaving the initial pose.
-For this purpose it analyses the map generates the path and in an off-line manner.
+For this purpose it analyses the map and generates the path and in an off-line manner.
 When finished, the robot simply follows the generated path.
 The generation of the path works as follows:
 <ol>
   <li> Set the cost of target position (cell) to 0 </li>
-  <li> For a given neighbouring cell find the cell with lowest cost lc, set cost of the currently analysed cell to lc+1 </li>
+  <li> For a given cell (neighbouring with cells with assigned cost) find the neighbour with lowest cost lc, set cost of the currently analyzed cell to lc+1 </li>
   <li> Repeat step 2 for each cell until all cells (including the initial one) have assigned costs </li>
-  <li> Find the path starting from the initial cell to the destination, by selecting the neighbouring cell with smallest cost</li>
+  <li> Find the path starting from the initial cell to the destination, by selecting the neighbouring cell with the smallest cost</li>
 </ol>
+More detailed description of the Wavefront can be found in the EMOR lectures, as well as on <a href="http://www.societyofrobots.com/programming_wavefront.shtml">this website</a>.
+
 
 
 
@@ -108,18 +110,17 @@ The generation of the path works as follows:
 
   <li>Navigation to the place of destination with Bug2 (5p)</li>
 	<ol>
-  	<li>User input of the goal position (x,y) (1p)</li>
+  	<li>User input of the goal position (x,y), with validation whether it is accessible (1p)</li>
   	<li>Implementation of the Bug2 algorithm (3p)</li>
-  	<li>Dynamic visualization of the realized path point by point (1p)</li>
+  	<li>Dynamic visualization of the realized path point by point in the V-REP (1p)</li>
 	</ol>
 
-  <li>Planning with Global dynamic window (6p)</li>
+  <li>Planning with the Wavefront algorithm (6p)</li>
 	<ol>
   	<li>Loading and proper "rescaling" the map from map.png file (1p)</li>
-  	<li>User input of the goal position (x,y), with validation whether it is accessible (1p)</li>
-  	<li>Implementation of the "Global dynamic window"-based generation of trajectory (2p)</li>
-  	<li>Drawing the generated trajectory in the  (1p)</li>
-  	<li>Realization of the trajectory (1p)</li>
+  	<li>Implementation of the "Wavefront"-based path generation (3p)</li>
+  	<li>Visualization of the generated path in the V-REP (1p)</li>
+  	<li>Realization of the navigation on the basis of the generated path (1p)</li>
 	</ol>
 
 </ol>
