@@ -39,137 +39,127 @@
         <a id="set" name="set"></a>
         <h1 style="margin-top: 0">Components</h1>
 
-<p>The programming/simulation environment used in EMOR tutorials reiles on three software components:</p>
-<ul>
-<li>Peter Corke's RVC toolbox,</li>
-<li>The V-REP simulator,</li>
-<li>The Matlab bindings for V-REP.</li>
-</ul>
-It is required to use a fairly recent version of Matlab. Please notice that Matlab versions older than 2011 may cause problems.
+          <p><b>Please read and follow the instruction carefully, to avoid errors and wasting your precious time!</b></p>
 
-<h2>Notes</h2>
+          <p>The programming/simulation environment used in EMOR tutorials reiles on four software components:</p>
+          <ul>
+            <li>Matlab,</li>
+            <li>Peter Corke's RVC toolbox,</li>
+            <li>The V-REP simulator,</li>
+            <li>The Matlab bindings for V-REP.</li>
+          </ul>
+          It is required to use a fairly recent version of Matlab. Please notice that Matlab versions older than 2011 may cause problems.
 
-<p>Before installing VREP and RVC, please take the time to read the tips below:</p>
+        <h2>Notes</h2>
 
-<ul>
+          <p>Before installing VREP and RVC, please take the time to read the tips below:</p>
 
-  <li>The installation process needs to be slightly adapted to your platform (Linux, Mac, Win), and to your Matlab version. At each step of the install procedure, I provide a set of commands that are tailored to a 64-bit Linux machine. If you use a different setup, you may have to adapt these commands.</li>
+          <ul>
+            <li>The installation process needs to be slightly adapted to your platform (Linux, Mac, Win), and to your Matlab version. At each step of the install procedure, I provide a set of commands that are tailored to a 64-bit Linux machine. If you use a different setup, you may have to adapt these commands.</li>
 
-  <li>If you are using Windows, you can pretty much follow the directives below. However, to ease the process, I suggest you install everything in <code>C:/trs</code> instead of your home directory.<br>
-  In the instructions below, the tilde <code>~</code> character stands for the home directory. If you are using Windows, use <code>C:/</code> instead of <code>~</code>. If you decide to go against this recommendation, please make sure that the path where you install the project stuff does not contain spaces, accented characters, or other non-letter characters. Letters and numbers only please.</li>
+            <li>If you are using Windows, you can pretty much follow the directives below. However, to ease the process, I suggest you install everything in <code>C:/trs</code> instead of your home directory.<br>
+In the instructions below, the tilde <code>~</code> character stands for the home directory. If you are using Windows, use <code>C:/</code> instead of <code>~</code>. If you decide to go against this recommendation, please make sure that the path where you install the project stuff does not contain spaces, accented characters, or other non-letter characters. Letters and numbers only please.</li>
 
-</ul>
+          </ul>
 
-<a id="install" name="install"></a>
-<h1>Installation Procedure</h1>
+        <a id="install" name="install"></a>
+        <h1>Installation Procedure</h1>
 
-<p>The recommended procedure for setting up your computer is listed below:</p>
+          <p>The recommended procedure for setting up your computer is listed below:</p>
 
-<ol class="steps">
+          <ol class="steps">
 
-  <li>
-    <a class="anchor" id="git"></a><p>Project-related files are published through Git. Download a Git client from the <a href="http://git-scm.com/downloads">git-scm.com</a> webiste. If you are unfamiliar with Git, <a href="http://www.sourcetreeapp.com">SourceTree</a> is a cool GUI for Mac and Windows.<br>Clone the Git repo <code>https://github.com/RCPRG-ros-pkg/emor_trs.git</code> onto your machine, for instance in a special workspace <code>ws_emor</code> directory created in your home directory. On a UNIX machine:</p>
-    <code class="block">cd ~
+            <li>
+              <a class="anchor" id="git"></a><p>Project-related files are published through Git. Download a Git client from the <a href="http://git-scm.com/downloads">git-scm.com</a> webiste. If you are unfamiliar with Git, <a href="http://www.sourcetreeapp.com">SourceTree</a> is a cool GUI for Mac and Windows.<br>Clone the Git repo <code>https://github.com/RCPRG-ros-pkg/emor_trs.git</code> onto your machine, for instance in a special workspace <code>ws_emor</code> directory created in your home directory. On a UNIX machine:</p>
+              <code class="block">cd ~
 mkdir ws_emor
 cd ws_emor
 git clone https://github.com/RCPRG-ros-pkg/emor_trs.git</code>
-    <p>Remember to regularly pull from the Git repository to get updates.</p>
-    <p>If you have trouble downloading the project files with Git, you can download a <a href="https://github.com/RCPRG-ros-pkg/emor_trs/archive/master.zip">ZIP snapshot</a> of the current state of the Git repo. The ZIP file behind this link is kept up-to-date, but <b>you must re-download it often to make sure you get all the updates to the project files</b>.</p>
-  </li>
-  <li>
-    Download <a href="http://coppeliarobotics.com/downloads.html">V-REP PRO EDU</a>.
-    When you're done downloading VREP, unpack it in the <code>ws_emor</code> workspace directory.
-    Delete the file <code>libv_repExtRos.so</code> from the VREP directory (<code>v_repExtRos.dll</code> on Windows version).
-  </li>
-  <li>
-    Install the VREP bindings for Matlab:
-    <ol>
-      <li>You must copy three files from the directory of the V-REP app (downloaded at the previous step) to the directory named <code>youbot</code> within your local copy of the GitHub repository. The three files you need to copy are named
-        <ul>
-          <li><code>remApi.m</code></li>
-          <li><code>remoteApiProto.m</code></li>
-          <li><code>remoteApi.so</code> (if you use Linux) <strong>or</strong> <code>remoteApi.dll</code> (if you use Windows) <strong>or</strong> <code>remoteApi.dylib</code> (if you use a Mac). <strong>If you have a choice between a 32-bit or 64-bit remoteApi, pick the one that corresponds to your Matlab install (32-bit Matlab or 64-bit Matlab). If you have 32-bit Matlab, pick the 32-bit remoteApi, even if your kernel is 64-bit.</strong></li>
-        </ul>
-        You will find these files in the directory containing the V-REP app. Look in the <code>programming/remoteApiBindings/lib/lib</code> and <code>programming/remoteApiBindings/matlab/matlab</code> subdirectories of the VREP app directory (although this can change from version to version). You must copy these files to the <code>youbot</code> directory within your copy of the GitHub repo. If you closely followed the instructions above, the <code>youbot</code> directory is at <code>~/ws_emor/emor_trs/youbot</code> (Linux/Mac) or <code>C:/ws_emor/emor_trs/youbot</code> (Windows).
-      </li>
+              <p>Remember to regularly pull from the Git repository to get updates.</p>
+              <p>If you have trouble downloading the project files with Git, you can download a <a href="https://github.com/RCPRG-ros-pkg/emor_trs/archive/master.zip">ZIP snapshot</a> of the current state of the Git repo. The ZIP file behind this link is kept up-to-date, but <b>you must re-download it often to make sure you get all the updates to the project files</b>.</p>
+            </li>
+            <li>
+              Download <a href="http://coppeliarobotics.com/downloads.html">V-REP PRO EDU</a>.
+              When you're done downloading VREP, unpack it in the <code>ws_emor</code> workspace directory.
+              Delete the file <code>libv_repExtRos.so</code> from the VREP directory (<code>v_repExtRos.dll</code> on Windows version).
+            </li>
+            <li>
+              Install the VREP bindings for Matlab:
+              <ol>
+                <li>You must copy three files from the directory of the V-REP app (downloaded at the previous step) to the directory named <code>youbot</code> within your local copy of the GitHub repository. The three files you need to copy are named
+                  <ul>
+                    <li><code>remApi.m</code></li>
+                    <li><code>remoteApiProto.m</code></li>
+                    <li><code>remoteApi.so</code> (if you use Linux) <strong>or</strong> <code>remoteApi.dll</code> (if you use Windows) <strong>or</strong> <code>remoteApi.dylib</code> (if you use a Mac). <strong>If you have a choice between a 32-bit or 64-bit remoteApi, pick the one that corresponds to your Matlab install (32-bit Matlab or 64-bit Matlab). If you have 32-bit Matlab, pick the 32-bit remoteApi, even if your kernel is 64-bit.</strong></li>
+                  </ul>
+                  You will find these files in the directory containing the V-REP app. Look in the <code>programming/remoteApiBindings/lib/lib</code> and <code>programming/remoteApiBindings/matlab/matlab</code> subdirectories of the VREP app directory (although this can change from version to version). You must copy these files to the <code>youbot</code> directory within your copy of the GitHub repo. If you closely followed the instructions above, the <code>youbot</code> directory is at <code>~/ws_emor/emor_trs/youbot</code> (Linux/Mac) or <code>C:/ws_emor/emor_trs/youbot</code> (Windows).
+                </li>
       
-      <li>
-        In Matlab, change to the <code>youbot</code> directory. On Linux/Mac:
-        <code class="block">cd ~/ws_emor/emor_trs/youbot</code>
-        Then type
-        <code class="block">vrep=remApi('remoteApi');
+                <li>
+                  In Matlab, change to the <code>youbot</code> directory. On Linux/Mac:
+                  <code class="block">cd ~/ws_emor/emor_trs/youbot</code>
+                  Then type
+                  <code class="block">vrep=remApi('remoteApi');
 vrep.delete();</code>
-        <p>If there is no error, the Matlab bindings to V-REP are loaded! If there is an error, check the steps above, and read <a href="http://www.coppeliarobotics.com/helpFiles/en/remoteApiClientSide.htm">V-REP's Matlab bindings help</a>.</p>
-      </li>
-      
-    </ol>
-    
-  </li>  
+                  <p>If there is no error, the Matlab bindings to V-REP are loaded! If there is an error, check the steps above, and read <a href="http://www.coppeliarobotics.com/helpFiles/en/remoteApiClientSide.htm">V-REP's Matlab bindings help</a>.</p>
+                </li>
+              </ol>
+            </li>  
 
-  
-  <li>
-    In Matlab, run the <code>startup_robot.m</code> file provided via the Git repository. If you cloned the Git repository in the <code>ws_emor</code> workspace directory, run:
-    <code class="block">run('~/ws_emor/emor_trs/matlab/startup_robot.m');</code>
-    <p>It will download and subsequently run the Peter Corke's Robotics, Vision and Control toolkit.
-    <p>This line needs to be run every time Matlab restarts. However, you may avoid it by adding the script 
-to your Matlab startup file.</p>
-  </li>
-</ol>
+            <li>
+              In Matlab, run the <code>startup_robot.m</code> file provided via the Git repository. If you cloned the Git repository in the <code>ws_emor</code> workspace directory, run:
+              <code class="block">run('~/ws_emor/emor_trs/matlab/startup_robot.m');</code>
+              <p>It will download and subsequently run the Peter Corke's Robotics, Vision and Control toolkit.
+              <p>This line needs to be run every time Matlab restarts. However, you may avoid it by adding the script to your Matlab startup file.</p>
+            </li>
+          </ol>
 
-Please follow the instructions from the next section in order to verify whether the setup works.
+          Please follow the instructions from the next section in order to verify whether the setup works.
 
-<a id="connection_testing" name="connection_testing"></a>
-<h1>Testing the Matlab - V-REP connection</h1>
-<ol class="steps">
+        <a id="connection_testing" name="connection_testing"></a>
+        <h1>Testing the Matlab - V-REP connection</h1>
+          <ol class="steps">
+	        <li>
+              In V-REP simulator (Linux: <code>./vrep.sh</code> from V-REP's directory)
+	          <ol class="steps">
+		        <li>Use the menu "File/Open Scene" and open <code>~/emor_trs/youbot/binding_test.ttt</code>.</li>
+		        <li>Hit "Start Simulation" in the "Simulation" menu.</li>
+	          </ol>
+	        </li>
 
-	<li> In V-REP simulator (Linux: <code>./vrep.sh</code> from V-REP's directory)
-	<ol class="steps">
-		<li>Use the menu "File/Open Scene" and open <code>~/emor_trs/youbot/binding_test.ttt</code>.</li>
-		<li>Hit "Start Simulation" in the "Simulation" menu.</li>
-	</ol>
-	</li>
-
-	<li> In Matlab (Linux: <code>matlab</code> from any directory)
-	<ol class="steps">
-		<li>Test that the RVC toolbox works. 
-        	<code class="block">rotx(1)</code>
-	        If there is no error, Peter Corke's RVC toolbox is working! If there is an error, check the steps above and read the toolbox's <a href="http://petercorke.com/Robotics_Toolbox.html">install doc</a>.
-		</li>
-		<li>
-			<code class="block">cd ~/ws_emor/emor_trs/youbot
+        	<li> In Matlab (Linux: <code>matlab</code> from any directory)
+              <ol class="steps">
+                <li>Test that the RVC toolbox works. 
+                  <code class="block">rotx(1)</code>
+                  If there is no error, Peter Corke's RVC toolbox is working! If there is an error, check the steps above and read the toolbox's <a href="http://petercorke.com/Robotics_Toolbox.html">install doc</a>.
+                </li>
+                <li>
+                  <code class="block">cd ~/ws_emor/emor_trs/youbot
 binding_test();</code>
-		</li>
-
-	</ol>
-	</li>
-
-</ol>
-If you see Matlab replying <em>Number of objects in the scene: 19</em>, everything works!
+                </li>
+              </ol>
+            </li>
+          </ol>
+          If you see Matlab replying <em>Number of objects in the scene: 19</em>, everything works!
 
 
+        <a id="running" name="running"></a>
+        <h1>Running the installed system</h1>
 
+          <p>In order to run the already installed system please perform the following steps:</p>
 
-<a id="running" name="running"></a>
-<h1>Running the installed system</h1>
-
-<p>In order to run the already installed system please perform the following steps:</p>
-
-<ol class="steps">
-  <li> Run Matlab (Linux: simply type <code>matlab</code>).
-	<ol class="steps">
-  		<li>In Matlab run the Peter Corke's Robotics, Vision & Control toolkit. On Linux/Mac:
-			<code class="block">cd ~/ws_emor/emor_trs/matlab
+          <ol class="steps">
+            <li>Run Matlab (Linux: simply type <code>matlab</code>).
+              <ol class="steps">
+                <li>In Matlab run the Peter Corke's Robotics, Vision & Control toolkit. On Linux/Mac:
+                  <code class="block">cd ~/ws_emor/emor_trs/matlab
 run('startup_robot.m');</code>
-		</li>
-	</ol>
-  </li>
-
-  <li> Run V-REP simulator (Linux: type <code>./vrep.sh</code> in the V-REP's directory).
-  <li> Test Matlab - V-REP connection as described in <a class="submenu" href="setup.html#connection_testing">Testing the connection</a> section.
-
-</ol>
-
-
+                </li>
+              </ol>
+            </li>
+            <li>Run V-REP simulator (Linux: type <code>./vrep.sh</code> in the V-REP's directory).</li>
+            <li>Test Matlab - V-REP connection as described in <a class="submenu" href="setup.html#connection_testing">Testing the connection</a> section.</li>
+          </ol>
 
 
 </div>
