@@ -25,6 +25,7 @@
           <a class="submenu" href="index.html#about">About</a>
           <a class="submenu" href="index.html#meetings">Mettings</a>
           <a class="submenu" href="index.html#grading">Grading</a>
+          <a class="submenu" href="index.html#projects">Projects</a>
         <a href="setup.html">Setup</a>
         <a href="project1.html">Project 1</a>
         <a href="project2.html">Project 2</a>
@@ -65,13 +66,17 @@
         <h1>Grading</h1>
           <p>The grading for each project is provided individually in the project page.</p>
 
-        <p>Please refer to:</p>
+        <a id="projects" name="projects"></a>
+        <h1>About the projects</h1>
+          <p>Each project is a <a href="http://www.mathworks.com/products/matlab" target="_blank">Matlab</a> program that controls a mobile robot: <a href="http://www.kuka-robotics.com/en/products/education/youbot/start.htm" target="_blank">KUKA youBot</a>.
+The program should use the data from variuos sensors to control the velocities of the robot base wheels to realize the specified task.</p>
 
-        <ul>
-          <li>a page that explains how to <a href="setup.html">setup</a> a laptop to work on the project,</li>
+          <p>The robot is controlled in a simulated environment inside the <a href="http://www.coppeliarobotics.com" target="_blank">v-rep</a> simulator. The Matlab program that controls the youBot robot
+communicates with the simulated hardware using v-rep Matlab bindings. The control program may use API functions from <a href="http://petercorke.com/Robotics_Toolbox.html" target="_blank">Peter Corke's Robotics, Vision and Control toolkit</a>.</p>
 
-          <li>a page that presents the <a href="project1.html">project 1 definition</a>: objectives, milestones, a description of the robot and the documentation of the Matlab functions that access the robot's sensors and actuators,</li>
-        </ul>
+          <p>The students should run the simulator and Matlab on their own laptops, as some of the work is intended to be done individually: as homework. Both Linux and Windows operating systems are supported.</p>
+
+        <p>Please refer to a page that explains how to <a href="setup.html">setup</a> a laptop to work on the project.</p>
 
       </div>
 
