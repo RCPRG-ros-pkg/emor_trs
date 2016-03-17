@@ -1,7 +1,7 @@
-TRS: An Open-source Recipe for Teaching/Learning Robotics with a Simulator
+TRS: An Open-source Recipe for Teaching/Learning Robotics with a Simulator (forked from http://ulgrobotics.github.io/trs).
 
-Mobile Robots Tutorials (EMOR)
+Tutorials for Mobile Robots (EMOR) on Faculty of Electronics and Information Technology, Warsaw University of Technology.
 
-See http://rcprg-ros-pkg.github.io/emor_trs/
+Form more information please see the webpage: http://rcprg-ros-pkg.github.io/emor_trs
 
 
