@@ -21,6 +21,7 @@
 
     <div class="content_body">
 
+<!--
       <div id="menu">
         <a class="top" href="index.html">Introduction</a>
         <a href="setup.html">Setup</a>
@@ -36,15 +37,17 @@
       <div class="content">
         <h1 style="margin-top: 0">The Project 1 is not yet announced</h1>
       </div>
-<!--
+-->
+
       <div id="menu">
         <a class="top" href="index.html">Introduction</a>
         <a href="setup.html">Setup</a>
         <a href="example.html">Example project</a>
         <a href="project1.html">Project 1</a>
           <a class="submenu" href="project1.html#description">Description</a>
-          <a class="submenu" href="project1.html#circle">Moving along a circle</a>
           <a class="submenu" href="project1.html#square">Moving on the sides of the square</a>
+          <a class="submenu" href="project1.html#circle1">Moving along a circle #1</a>
+          <a class="submenu" href="project1.html#circle2">Moving along a circle #2</a>
         <a href="project2.html">Project 2</a>
         <a href="project3.html">Project 3</a>
         <a href="api.html">API Documentation</a>
@@ -59,123 +62,124 @@
 
           <p>There are two major goals of the first EMOR tutorial:</p>
           <ol>
-            <li>Installation of the required software</li>
-            <li>Writing two simple programs enabling youBot to move along two trajectories, i.e. a circle and a square</li>
+            <li>Installation of the required software,</li>
+            <li>Writing three simple programs enabling youBot to move along two trajectories, i.e. a square and a circle.</li>
           </ol>
 
+        <a id="install" name="install"></a>
         <h2>Installation of the environment</h2>
 
-During the first meeting you are supposed to install the environment, that you will use for the whole EMOR tutorials.
-The description the installation procedure can be found at <a href="setup.html">setup</a> website.
-For the installation you can get 3p total:
-<ol>
-  <li>Cloning emor_trs git repository (0.5p)</li>
-  <li>Installation of V-Rep (0.5p)</li>
-  <li>Preparation of Matlab V-Rep bindings (0.5p)</li>
-  <li>Installation of RVC toolbox for Matlab (0.5p)</li>
-  <li>Making the abovedescribed software packages to work together (1p)</li>
-</ol>
+          During the first meeting you are supposed to install the environment, that you will use for the whole EMOR tutorials.
+          The description the installation procedure can be found at <a href="setup.html">setup</a> website.
 
-<h2>Generation of trajectories</h2>
-Your homework is to prepare two scripts, responsible for:
-<ol>
-  <li>Generation of a circular trajectory (2p)</li>
-  <li>Generation of a "square  trajectory" (2p)</li>
-</ol>
+        <a id="generation" name="generation"></a>
+        <h2>Trajectory generation</h2>
+          <p>Your homework is to prepare three scripts, responsible for:
+          <ol>
+            <li>Generation of a square trajectory (2p)</li>
+            <li>Generation of a circular trajectory with changing orientation (2p)</li>
+            <li>Generation of a circular trajectory with constant orientation (2p)</li>
+          </ol>
+          The scripts should be named <code>solution1a.m</code>, <code>solution1b.m</code> and <code>solution1c.m</code> respectively.
+          All scripts should be in <code>~/ws_emor/emor_trs/youbot</code> directory.</p>
 
-<p>In both cases you are supposed to write a program on the basis of the <code>exercise01.m</code> file, by modifying the section between the
-<code>% EMOR exercise 01 begin</code> and <code>% EMOR exercise end</code> comments. <b> The rest of the script code should remain unchanged!</b>.
-
-<p>Besides the matlab code we prepared a simulation environment in V-REP stored in file <code>exercise01.ttt</code>.
-<b>You must run it before running your matlab script</b>, similarly to the <code>binding_test.ttt</code> during <a href="setup.html#connection_testing">Testing the setup</a>.
-
-<p><b>Important:</b> You must modify only the indicated section of the <code>exercise01.m</code> script. Modification of other parts of the code are forbidden and will result in zero points from the project. 
-
-
+          <p>Each script is a matlab program that declares a callback function of the same name as the script, e.g. the callback function in the script <code>solution1a.m</code>
+            should be declared as follows:
+<code class="block">
+function [forwBackVel, leftRightVel, rotVel, finish] = solution1a(pts, contacts, position, orientation)
+    ... % body of the function
+end
+</code>
+            This callback function is called in every control loop. It processes the inputs:
+            <ul>
+              <li>the measured pose (position and orientation) of the robot,</li>
+              <li>LIDAR data (laser range sensor),</li>
+            </ul>
+            and produces the outputs that control the state of the robot:
+            <ul>
+              <li>forward/backward velocity,</li>
+              <li>left/right velocity,</li>
+              <li>rotational velocity.</li>
+            </ul>
+            You can use the example scripts presented in the <a href="example.html">example project</a> as a reference.</p>
+            <p>To run the simulation and the control program using with the callback control function <code>solution1a</code> type in the Matlab console:
+            <code>run_simulation(@solution1a, false)</code>. Note that the steps from the instruction in the <a href="example.html">example project</a> page
+            must be followed in order to enable the communication between Matlab and V-REP. Also, the V-REP application must be running!</p>
 
 <h2>Programming hints</h2>
 
-<p>There are three major methods enabling you to get current robot pose/control its motion:
-<ol>
-<il><code>simxGetObjectPosition</code> - gets current robot x,y,z Cartesian coordinates. </il>
-<il><code>simxGetObjectOrientation</code> - gets current robot orientation (Euler angles). </il>
-<il><code>simxSetJointTargetVelocity</code> - sets velocities for all youbot joints, including wheels. </il>
-</ol>
-However, please analyse the pasted below (and slightly simplified) code of the <code>exercise01.m</code> file containing the control loop, with the most important lines indicated:
-<code class="block">
-   while true,
-
-      // Get robot position and orientation.
-      [res youbotPos] = vrep.simxGetObjectPosition (...)
-      [res youbotEuler] = vrep.simxGetObjectOrientation(...)
-
-      // ...
-
-      %
-      % EMOR exercise 01 begin - You can write your code below
-      %
-
-      // Place user code here!
-
-      %
-      % EMOR exercise end - You can write your code above
-      %
-
-      // Update wheel velocities.
-      vrep.simxSetJointTargetVelocity(id, h.wheelJoints(1), -forwBackVel-leftRightVel+rotVel, vrep.simx_opmode_oneshot);
-      vrep.simxSetJointTargetVelocity(id, h.wheelJoints(2), -forwBackVel+leftRightVel+rotVel, vrep.simx_opmode_oneshot);
-      vrep.simxSetJointTargetVelocity(id, h.wheelJoints(3), -forwBackVel-leftRightVel-rotVel, vrep.simx_opmode_oneshot);
-      vrep.simxSetJointTargetVelocity(id, h.wheelJoints(4), -forwBackVel+leftRightVel-rotVel, vrep.simx_opmode_oneshot);
-
-      // ...
-   end
-</code>
-Because those functions are already used in the control loop, you don't in fact need to call them once again.
-Instead, you can simply operate on five variables, explained below:
-
-<p>The first two enable you to access the current robot pose:
-<ol>
-  <li><code>youbotPos</code> - youbot Cartesian position (x,y,z) [m] </li>
-  <li><code>youbotEuler</code> - youbot orientation [rad] </li>
-</ol>
-
-The rotation of the youBot wheels can be controlled by relative velocities of the robot:
-<ol>
-  <li><code>forwBackVel</code> - linear velocity along the x axis of the robot [m/s] </li>
-  <li><code>leftRightVel</code> - linear velocity along the y axis of the robot [m/s] </li>
-  <li><code>rotVel</code> - angular velocity around the z axis of the robot [rad/s] </li>
-</ol>
-Please notice that such a control is possible thanks to the special construction of robot wheels - mecanum wheels enable to move a vehicle in (almost practically) any direction disregarding its current orientation.
-
-<a id="circle" name="circle"></a>
-<h1>Moving along a circle trajectory</h1>
-
-<p>The first trajectory the youBot robot has to follow is a circle.</p>
-
-<h2>Task requirements</h2>
-<ol>
-  <li>The control program can be implemented as a two state finite state maching (FSM), i.e. aside of the initial state you it will be required to create another state responsible for computation of the required linear and angular velocities.</li>
-  <li>It is suggested that in the initialize state you should store the coordinates of the center of the circle.</li>
-  <li>The robot can move infinitelly. </li>
-  <li>The radius of circle should be equal to 0,5m. </li>
-</ol>
-
-<div class="figure" style="width: 580px"><div><img style="border: 1px solid black; width: 560px" src="raster/vrep-circle.jpg" alt="circle" /></div></div>
+<p>Please refer to the <a href="example.html">example project</a> page.</p>
 
 <a id="square" name="square"></a>
 <h1>Following a square trajectory</h1>
 
-<p>The second trajectory is four egdes of a square. You need to provide the youBot with a program that allows it to move along egdes of a square and visit all vertices.</p>
+<p>The first trajectory is four egdes of a square. You need to provide the youBot with a program that allows it to move along egdes of a square and visit all vertices.</p>
 
 <h2>Task requirements</h2>
 <ol>
   <li>The motion along each side of the square should be implemented in separate state of FSM, whereas the transition between states should be triggered by reaching the corner.</li>
   <li>When the robot will reach the first vertex once again, the program should stop. </li>
   <li>The lenght of the edge of the square should be 1m. </li>
+  <li>Use the environment file <code>~/emor_trs/youbot/vrep_env/exercise01.ttt</code> in V-REP simulation.</li>
 </ol>
 
+<h2>Grading</h2>
+<ul>
+  <li>0.5p - the robot follows the square trajectory,</li>
+  <li>0.5p - the lenght of the edge of the square is equal to 1m,</li>
+  <li>1p - using the argument <code>position</code> of the callback function <code>solution1a</code> to control the velocity of the robot.</li>
+</ul>
+
 <div class="figure" style="width: 580px"><div><img style="border: 1px solid black; width: 560px" src="raster/vrep-square.jpg" alt="square" /></div></div>
--->
+
+<a id="circle1" name="circle1"></a>
+<h1>Moving along a circle trajectory with changing orientation</h1>
+
+<p>The second trajectory the youBot robot has to follow is a circle. The robot should change its orientation such that the center of the circle is always on one side of the robot (as in the figure).</p>
+
+<h2>Task requirements</h2>
+<ol>
+  <li>The control program can be implemented as a two state finite state maching (FSM), i.e. aside of the initial state you it will be required to create another state responsible for computation of the required linear and angular velocities.</li>
+  <li>It is suggested that in the initialize state you should store the coordinates of the center of the circle.</li>
+  <li>The position and orientation of the robot should be controlled by a regulator and the desired pose of the robot should be generated on the circle.</li>
+  <li>The robot can move infinitelly. </li>
+  <li>The radius of circle should be equal to 0.5m. </li>
+  <li>Use the environment file <code>~/emor_trs/youbot/vrep_env/exercise01.ttt</code> in V-REP simulation.</li>
+</ol>
+
+<h2>Grading</h2>
+<ul>
+  <li>0.5p - the robot follows the circle trajectory with orientation as described above,</li>
+  <li>0.5p - the radius of the circle is equal to 0.5m,</li>
+  <li>1p - using the arguments <code>position</code> and <code>orientation</code> of the callback function <code>solution1b</code> to control the velocity of the robot.</li>
+</ul>
+
+<div class="figure" style="width: 580px"><div><img style="border: 1px solid black; width: 560px" src="raster/vrep-circle1.jpg" alt="circle" /></div></div>
+
+<a id="circle2" name="circle2"></a>
+<h1>Moving along a circle trajectory with constant orientation</h1>
+
+<p>The third trajectory the youBot robot has to follow is a circle. The robot should change its orientation such that the center of the circle is always on one side of the robot (as in the figure).</p>
+
+<h2>Task requirements</h2>
+<ol>
+  <li>The control program can be implemented as a two state finite state maching (FSM), i.e. aside of the initial state you it will be required to create another state responsible for computation of the required linear and angular velocities.</li>
+  <li>It is suggested that in the initialize state you should store the coordinates of the center of the circle.</li>
+  <li>The position and orientation of the robot should be controlled by a regulator and the desired pose of the robot should be generated on the circle.</li>
+  <li>The robot can move infinitelly. </li>
+  <li>The radius of circle should be equal to 0.5m. </li>
+  <li>Use the environment file <code>~/emor_trs/youbot/vrep_env/exercise01.ttt</code> in V-REP simulation.</li>
+</ol>
+
+<h2>Grading</h2>
+<ul>
+  <li>0.5p - the robot follows the circle trajectory with constant orientation,</li>
+  <li>0.5p - the radius of the circle is equal to 0.5m.</li>
+  <li>1p - using the argument <code>position</code> of the callback function <code>solution1c</code> to control the velocity of the robot.</li>
+</ul>
+
+<div class="figure" style="width: 580px"><div><img style="border: 1px solid black; width: 560px" src="raster/vrep-circle2.jpg" alt="circle" /></div></div>
+
     </div>
       <div class="trailer_body">
         <div style="width: 100%; display: table;">
