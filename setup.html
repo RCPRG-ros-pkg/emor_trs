@@ -26,6 +26,7 @@
           <a class="submenu" href="setup.html#install">Installation</a>
           <a class="submenu" href="setup.html#connection_testing">Testing the setup</a>
           <a class="submenu" href="setup.html#running">Running the installed system</a>
+        <a href="example.html">Example project</a>
         <a href="project1.html">Project 1</a>
         <a href="project2.html">Project 2</a>
         <a href="project3.html">Project 3</a>
@@ -69,17 +70,31 @@ In the instructions below, the tilde <code>~</code> character stands for the hom
 
           <ol class="steps">
 
-            <li>
-              <a class="anchor" id="git"></a><p>Project-related files are published through Git. Download a Git client from the <a href="http://git-scm.com/downloads">git-scm.com</a> webiste. If you are unfamiliar with Git, <a href="http://www.sourcetreeapp.com">SourceTree</a> is a cool GUI for Mac and Windows.<br>Clone the Git repo <code>https://github.com/RCPRG-ros-pkg/emor_trs.git</code> onto your machine, for instance in a special workspace <code>ws_emor</code> directory created in your home directory. On a UNIX machine:</p>
+            <li>Download the EMOR tutorials repository form github.com: <a href="https://github.com/RCPRG-ros-pkg/emor_trs/archive/master.zip">the ZIP snapshot</a>.
+              Unzip the zip file in the <code>~ws_emor</code> directory (in Ubuntu) or <code>C:/trs/ws_emor</code> directory (in Windows).
+<!--
+              Tutorials-related files are published through Git.
+              The git repository of the tutorials is available on the github.
+              <a href="https://github.com/RCPRG-ros-pkg/emor_trs.git" target="_blank">https://github.com/RCPRG-ros-pkg/emor_trs.git</a>
+              If you have the git client installed, you can clone the repository to your PC:<code class="block">cd ~
+mkdir ws_emor
+cd ws_emor
+git clone https://github.com/RCPRG-ros-pkg/emor_trs.git</code>
+              Otherwise, you can download the
+              <a href="https://github.com/RCPRG-ros-pkg/emor_trs/archive/master.zip">ZIP snapshot</a> (this is the recommended way).
+                   
+
+<!--<p>Project-related files are published through Git. Download a Git client from the <a href="http://git-scm.com/downloads">git-scm.com</a> webiste. If you are unfamiliar with Git, <a href="http://www.sourcetreeapp.com">SourceTree</a> is a cool GUI for Mac and Windows.<br>Clone the Git repo <code>https://github.com/RCPRG-ros-pkg/emor_trs.git</code> onto your machine, for instance in a special workspace <code>ws_emor</code> directory created in your home directory. On a UNIX machine:</p>
               <code class="block">cd ~
 mkdir ws_emor
 cd ws_emor
 git clone https://github.com/RCPRG-ros-pkg/emor_trs.git</code>
               <p>Remember to regularly pull from the Git repository to get updates.</p>
               <p>If you have trouble downloading the project files with Git, you can download a <a href="https://github.com/RCPRG-ros-pkg/emor_trs/archive/master.zip">ZIP snapshot</a> of the current state of the Git repo. The ZIP file behind this link is kept up-to-date, but <b>you must re-download it often to make sure you get all the updates to the project files</b>.</p>
+-->
             </li>
             <li>
-              Download <a href="http://coppeliarobotics.com/downloads.html">V-REP PRO EDU</a>.
+              Download <a href="http://coppeliarobotics.com/downloads.html" target="_blank">V-REP PRO EDU</a>.
               When you're done downloading VREP, unpack it in the <code>ws_emor</code> workspace directory.
               Delete the file <code>libv_repExtRos.so</code> from the VREP directory (<code>v_repExtRos.dll</code> on Windows version).
             </li>
@@ -101,7 +116,8 @@ git clone https://github.com/RCPRG-ros-pkg/emor_trs.git</code>
                   Then type
                   <code class="block">vrep=remApi('remoteApi');
 vrep.delete();</code>
-                  <p>If there is no error, the Matlab bindings to V-REP are loaded! If there is an error, check the steps above, and read <a href="http://www.coppeliarobotics.com/helpFiles/en/remoteApiClientSide.htm">V-REP's Matlab bindings help</a>.</p>
+                  <p>If there is no error, the Matlab bindings to V-REP are loaded! If there is an error, check the steps above, and read
+                    <a href="http://www.coppeliarobotics.com/helpFiles/en/remoteApiClientSide.htm" target="_blank">V-REP's Matlab bindings help</a>.</p>
                 </li>
               </ol>
             </li>  
@@ -119,8 +135,9 @@ vrep.delete();</code>
         <a id="connection_testing" name="connection_testing"></a>
         <h1>Testing the Matlab - V-REP connection</h1>
           <ol class="steps">
+	        <li>Run the V-REP simulator (in Linux: <code>./vrep.sh</code> from V-REP's directory)</li>
 	        <li>
-              In V-REP simulator (Linux: <code>./vrep.sh</code> from V-REP's directory)
+              In V-REP simulator
 	          <ol class="steps">
 		        <li>Use the menu "File/Open Scene" and open <code>~/emor_trs/youbot/binding_test.ttt</code>.</li>
 		        <li>Hit "Start Simulation" in the "Simulation" menu.</li>
@@ -129,11 +146,11 @@ vrep.delete();</code>
 
         	<li> In Matlab (Linux: <code>matlab</code> from any directory)
               <ol class="steps">
-                <li>Test that the RVC toolbox works. 
+                <li>Test if the RVC toolbox works:
                   <code class="block">rotx(1)</code>
                   If there is no error, Peter Corke's RVC toolbox is working! If there is an error, check the steps above and read the toolbox's <a href="http://petercorke.com/Robotics_Toolbox.html">install doc</a>.
                 </li>
-                <li>
+                <li>Test if the Matlab bindings to V-REP work:
                   <code class="block">cd ~/ws_emor/emor_trs/youbot
 binding_test();</code>
                 </li>
