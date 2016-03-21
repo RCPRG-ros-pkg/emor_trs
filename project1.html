@@ -21,25 +21,6 @@
 
     <div class="content_body">
 
-<!--
-      <div id="menu">
-        <a class="top" href="index.html">Introduction</a>
-        <a href="setup.html">Setup</a>
-        <a href="example.html">Example project</a>
-        <a href="project1.html">Project 1</a>
-        <a href="project2.html">Project 2</a>
-        <a href="project3.html">Project 3</a>
-        <a href="api.html">API Documentation</a>
-        <a href="tips.html">Tips & Tricks</a>
-        <a href="troubleshooting.html">Troubleshooting</a>
-      </div>
-
-      <div class="content">
-        <h1 style="margin-top: 0">The Project 1 is not yet announced</h1>
-      </div>
--->
-
-
       <div id="menu">
         <a class="top" href="index.html">Introduction</a>
         <a href="setup.html">Setup</a>
@@ -187,55 +168,7 @@ end</code>
 
 <div class="figure" style="width: 580px"><div><img style="border: 1px solid black; width: 560px" src="raster/vrep-line.jpg" alt="line" /></div></div>
 
-<!--
-<a id="square" name="square"></a>
-<h1>Following a square trajectory</h1>
-
-<p>The first trajectory is four egdes of a square. You need to provide the youBot with a program that allows it to move along egdes of a square and visit all vertices.</p>
-
-<h2>Task requirements</h2>
-<ol>
-  <li>The motion along each side of the square should be implemented in separate state of FSM, whereas the transition between states should be triggered by reaching the corner.</li>
-  <li>When the robot will reach the first vertex once again, the program should stop. </li>
-  <li>The lenght of the edge of the square should be 1m. </li>
-  <li>Use the environment file <code>~/emor_trs/youbot/vrep_env/exercise01.ttt</code> in V-REP simulation.</li>
-</ol>
-
-<h2>Grading</h2>
-<ul>
-  <li>0.5p - the robot follows the square trajectory,</li>
-  <li>0.5p - the lenght of the edge of the square is equal to 1m,</li>
-  <li>1p - using the argument <code>position</code> of the callback function <code>solution1a</code> to control the velocity of the robot.</li>
-</ul>
-
-<div class="figure" style="width: 580px"><div><img style="border: 1px solid black; width: 560px" src="raster/vrep-square.jpg" alt="square" /></div></div>
--->
-<!--
-<a id="circle1" name="circle1"></a>
-<h1>Moving along a circle trajectory with changing orientation</h1>
-
-<p>The second trajectory the youBot robot has to follow is a circle. The robot should change its orientation such that the center of the circle is always on one side of the robot (as in the figure).</p>
-
-<h2>Task requirements</h2>
-<ol>
-  <li>The control program can be implemented as a two state finite state maching (FSM), i.e. aside of the initial state you it will be required to create another state responsible for computation of the required linear and angular velocities.</li>
-  <li>It is suggested that in the initialize state you should store the coordinates of the center of the circle.</li>
-  <li>The position and orientation of the robot should be controlled by a regulator and the desired pose of the robot should be generated on the circle.</li>
-  <li>The robot can move infinitelly. </li>
-  <li>The radius of circle should be equal to 0.5m. </li>
-  <li>Use the environment file <code>~/emor_trs/youbot/vrep_env/exercise01.ttt</code> in V-REP simulation.</li>
-</ol>
-
-<h2>Grading</h2>
-<ul>
-  <li>0.5p - the robot follows the circle trajectory with orientation as described above,</li>
-  <li>0.5p - the radius of the circle is equal to 0.5m,</li>
-  <li>1p - using the arguments <code>position</code> and <code>orientation</code> of the callback function <code>solution1b</code> to control the velocity of the robot.</li>
-</ul>
-
-<div class="figure" style="width: 580px"><div><img style="border: 1px solid black; width: 560px" src="raster/vrep-circle1.jpg" alt="circle" /></div></div>
--->
-        <a id="circle2" name="circle2"></a>
+        <a id="circle" name="circle"></a>
         <h1>Moving along a circle trajectory with constant orientation</h1>
 
           <p>The second trajectory the youBot robot has to follow is a circle. The robot should keep the constant orientation while moving along a circle (as in the figure).
