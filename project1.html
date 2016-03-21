@@ -21,6 +21,7 @@
 
     <div class="content_body">
 
+<!--
       <div id="menu">
         <a class="top" href="index.html">Introduction</a>
         <a href="setup.html">Setup</a>
@@ -36,7 +37,7 @@
       <div class="content">
         <h1 style="margin-top: 0">The Project 1 is not yet announced</h1>
       </div>
-<!--
+-->
 
 
       <div id="menu">
@@ -45,9 +46,8 @@
         <a href="example.html">Example project</a>
         <a href="project1.html">Project 1</a>
           <a class="submenu" href="project1.html#description">Description</a>
-          <a class="submenu" href="project1.html#square">Moving on the sides of the square</a>
-          <a class="submenu" href="project1.html#circle1">Moving along a circle #1</a>
-          <a class="submenu" href="project1.html#circle2">Moving along a circle #2</a>
+          <a class="submenu" href="project1.html#line">Moving along a straight line</a>
+          <a class="submenu" href="project1.html#circle">Moving along a circle</a>
         <a href="project2.html">Project 2</a>
         <a href="project3.html">Project 3</a>
         <a href="api.html">API Documentation</a>
@@ -63,7 +63,7 @@
           <p>There are two major goals of the first EMOR tutorial:</p>
           <ol>
             <li>Installation of the required software,</li>
-            <li>Writing three simple programs enabling youBot to move along two trajectories, i.e. a square and a circle.</li>
+            <li>Writing two simple programs enabling youBot to move along two trajectories, i.e. a straight line and a circle.</li>
           </ol>
 
         <a id="install" name="install"></a>
@@ -74,26 +74,20 @@
 
         <a id="generation" name="generation"></a>
         <h2>Trajectory generation</h2>
-          <p>Your homework is to prepare three scripts, responsible for:
+          <p>Your homework is to prepare two scripts, responsible for:
           <ol>
-            <li>Generation of a square trajectory (2p)</li>
-            <li>Generation of a circular trajectory with changing orientation (2p)</li>
-            <li>Generation of a circular trajectory with constant orientation (2p)</li>
+            <li>Generation of a straight line trajectory (3p)</li>
+            <li>Generation of a circular trajectory with constant orientation (4p)</li>
           </ol>
-          The scripts should be named <code>solution1a.m</code>, <code>solution1b.m</code> and <code>solution1c.m</code> respectively.
+          The scripts should be named <code>solution1a.m</code> and <code>solution1b.m</code> respectively.
           All scripts should be in <code>~/ws_emor/emor_trs/youbot</code> directory.</p>
 
           <p>Each script is a matlab program that declares a callback function of the same name as the script, e.g. the callback function in the script <code>solution1a.m</code>
-            should be declared as follows:
-<code class="block">
-function [forwBackVel, leftRightVel, rotVel, finish] = solution1a(pts, contacts, position, orientation)
-    ... % body of the function
-end
-</code>
+            should be named <code>solution1a</code>.
             This callback function is called in every control loop. It processes the inputs:
             <ul>
               <li>the measured pose (position and orientation) of the robot,</li>
-              <li>LIDAR data (laser range sensor),</li>
+              <li>LIDAR data, laser range sensor (not used in the Project 1),</li>
             </ul>
             and produces the outputs that control the state of the robot:
             <ul>
@@ -101,15 +95,99 @@ end
               <li>left/right velocity,</li>
               <li>rotational velocity.</li>
             </ul>
-            You can use the example scripts presented in the <a href="example.html">example project</a> as a reference.</p>
+            You can use the example scripts presented in the <a href="example.html">Example Project</a> as a reference.</p>
             <p>To run the simulation and the control program using with the callback control function <code>solution1a</code> type in the Matlab console:
-            <code>run_simulation(@solution1a, false)</code>. Note that the steps from the instruction in the <a href="example.html">example project</a> page
-            must be followed in order to enable the communication between Matlab and V-REP. Also, the V-REP application must be running!</p>
+            <code>run_simulation(@solution1a, false)</code>. Note that the steps from the instruction in the <a href="example.html">Example Project</a> page
+            must be followed in order to enable the communication between Matlab and V-REP. Also, the V-REP application must be running with proper scene!</p>
 
-<h2>Programming hints</h2>
+            <h2>Programming hints</h2>
 
-<p>Please refer to the <a href="example.html">example project</a> page.</p>
+              <p>Please refer to the <a href="example.html">example project</a> page.</p>
 
+              <p>The desired trajectories should be generaded by proportional regulators (P) with limited output. The example of such a regulator in pseudo-code:
+<code class="block">error_x = dest_x - measured_x
+u_x = gain_P * error_x
+if u_x > u_max then
+    u_x = u_max
+else if u_x < u_min then
+    u_x = u_min
+end</code>
+              where <code>measured_x</code> is the current value of the controlled state variable <code>x</code>, <code>dest_x</code> is its desired value, <code>error_x</code> is the error,
+              <code>gain_P</code> is the proportional regulator gain, <code>u_min</code> and <code>u_max</code> are the limits of the output <code>u_x</code>.
+              </p>
+
+              <p>The transformations of the velocities and other vectors between the reference frames (e.g. the reference frame of the robot and the reference frame of the world) are
+              described in the lectures (<a href="https://studia.elka.pw.edu.pl/file/16L/EMOR.A/priv/EMOR_priv.html" target="_blank">EMOR individual students' pages</a>,
+              <a href="https://studia.elka.pw.edu.pl/file/16L/EMOR.A/priv/MR_lec3.pdf" target="_blank">MR_lec3.pdf</a>, pages 3, 4, 5). You really need them in your projects!</p>
+
+        <a id="line" name="line"></a>
+        <h1>Following a trajectory to the destination point</h1>
+
+          <p>The first trajectory is a straight line to the specified destination point represented as three coordinates: [x, y, fi],
+          where x and y is the position of the robot in the XY plane, and fi is the orientation of the robot.
+          You need to provide the youBot with a program that allows it to move along the straight-line trajectory from the starting point to the user-defined destination point.
+          The destination point is passed to the control program through the variable-length argument list in the <code>run_simulation</code> function, e.g.
+          <code class="block">run_simulation(@solution1a, false, 1, 2, 3.1415/2.0)</code>
+          where tha arguments are:
+          <ul>
+            <li><code>solution1a</code> is the name of the control callback function,</li>
+            <li><code>false</code> - do not display the sensor data (simulation runs faster),</li>
+            <li><code>1</code> - the x coordinate of the destination point is 1 meter,</li>
+            <li><code>2</code> - the y coordinate of the destination point is 2 meters,</li>
+            <li><code>3.1415/2.0</code> - the fi coordinate of the destination point is PI/2 radians (i.e. 90 degrees).</li>
+          </ul>
+          The callback function for this task must be declared as:
+<code class="block">function [forwBackVel, leftRightVel, rotVel, finish] = solution1a(pts, contacts, position, orientation, varargin)
+% The control loop callback function - the solution for task 1A
+
+    % get the destination point
+    if length(varargin) ~= 3,
+         error('Wrong number of additional arguments: %d\n', length(varargin));
+    end
+    dest_x = varargin{1};
+    dest_y = varargin{2};
+    dest_fi = varargin{3};
+    
+    % declare the persistent variable that keeps the state of the Finite
+    % State Machine (FSM)
+    persistent state;
+    if isempty(state),
+        % the initial state of the FSM is 'init'
+        state = 'init';
+    end
+
+    % initialize the robot control variables (returned by this function)
+    finish = false;
+    forwBackVel = 0;
+    leftRightVel = 0;
+    rotVel = 0;
+
+    % TODO: manage the states of FSM
+    ...
+end</code>
+          Please refer to solution <code>solution0a</code> in the <a href="example.html">Example Project</a> for mode details on variable-length argument list.
+          </p>
+
+          <h2>Task requirements</h2>
+            <ol>
+              <li>The name of the control callback function should be <code>solution1a</code>,</li>
+              <li>The motion of the robot must be generated by P regulators with limited output.</li>
+              <li>Both position and orientation must be controlled.</li>
+              <li>The robot must follow the shortest path: the straight line.</li>
+              <li>When the destination point is reached, the function must return <code>finish=true</code> to stop the control program.</li>
+              <li>Use the environment file <code>~/emor_trs/youbot/vrep_env/exercise01.ttt</code> in V-REP simulation.</li>
+            </ol>
+
+          <h2>Grading</h2>
+            <ul>
+              <li>1p - x, y and fi coordinates regulation (proportional with limited output),</li>
+              <li>1p - using reference frames transformations.</li>
+              <li>1p - proper stop condition and clean exit (if all previous requirements are met).</li>
+            </ul>
+
+<div class="figure" style="width: 580px"><div><img style="border: 1px solid black; width: 560px" src="raster/vrep-line.jpg" alt="line" /></div></div>
+
+<!--
 <a id="square" name="square"></a>
 <h1>Following a square trajectory</h1>
 
@@ -131,7 +209,8 @@ end
 </ul>
 
 <div class="figure" style="width: 580px"><div><img style="border: 1px solid black; width: 560px" src="raster/vrep-square.jpg" alt="square" /></div></div>
-
+-->
+<!--
 <a id="circle1" name="circle1"></a>
 <h1>Moving along a circle trajectory with changing orientation</h1>
 
@@ -155,31 +234,34 @@ end
 </ul>
 
 <div class="figure" style="width: 580px"><div><img style="border: 1px solid black; width: 560px" src="raster/vrep-circle1.jpg" alt="circle" /></div></div>
+-->
+        <a id="circle2" name="circle2"></a>
+        <h1>Moving along a circle trajectory with constant orientation</h1>
 
-<a id="circle2" name="circle2"></a>
-<h1>Moving along a circle trajectory with constant orientation</h1>
+          <p>The second trajectory the youBot robot has to follow is a circle. The robot should keep the constant orientation while moving along a circle (as in the figure).
+          The radius of the circle is passed to the control program through the variable-length argument list in the <code>run_simulation</code> function,
+          e.g. running the function <code>run_simulation(@solution1b, false, 1.234)</code> should generate the movement of the robot along a circle of radius 1.234 m.
 
-<p>The third trajectory the youBot robot has to follow is a circle. The robot should change its orientation such that the center of the circle is always on one side of the robot (as in the figure).</p>
+          <h2>Task requirements</h2>
+            <ol>
+              <li>The name of the control callback function should be <code>solution1b</code>,</li>
+              <li>The control program can be implemented as a two state finite state maching (FSM), i.e. aside of the initial state you it will be required to create another state responsible for computation of the required linear and angular velocities.</li>
+              <li>It is suggested that in the initialize state you should store the coordinates of the center of the circle.</li>
+              <li>The position and orientation of the robot should be controlled by regulators and the desired pose of the robot should be generated on the circle.</li>
+              <li>The motion of the robot must be generated by P regulators with limited output.</li>
+              <li>The robot can move infinitelly.</li>
+              <li>The radius of circle should be equal to the value provided as an argument to the <code>run_simulation</code> function.</li>
+              <li>Use the environment file <code>~/emor_trs/youbot/vrep_env/exercise01.ttt</code> in V-REP simulation.</li>
+            </ol>
 
-<h2>Task requirements</h2>
-<ol>
-  <li>The control program can be implemented as a two state finite state maching (FSM), i.e. aside of the initial state you it will be required to create another state responsible for computation of the required linear and angular velocities.</li>
-  <li>It is suggested that in the initialize state you should store the coordinates of the center of the circle.</li>
-  <li>The position and orientation of the robot should be controlled by a regulator and the desired pose of the robot should be generated on the circle.</li>
-  <li>The robot can move infinitelly. </li>
-  <li>The radius of circle should be equal to 0.5m. </li>
-  <li>Use the environment file <code>~/emor_trs/youbot/vrep_env/exercise01.ttt</code> in V-REP simulation.</li>
-</ol>
-
-<h2>Grading</h2>
-<ul>
-  <li>0.5p - the robot follows the circle trajectory with constant orientation,</li>
-  <li>0.5p - the radius of the circle is equal to 0.5m.</li>
-  <li>1p - using the argument <code>position</code> of the callback function <code>solution1c</code> to control the velocity of the robot.</li>
-</ul>
+          <h2>Grading</h2>
+            <ul>
+              <li>2p - x, y regulators (proportional with limited output),</li>
+              <li>1p - fi regulator (proportional with limited output).</li>
+              <li>1p - using reference frames transformations.</li>
+            </ul>
 
 <div class="figure" style="width: 580px"><div><img style="border: 1px solid black; width: 560px" src="raster/vrep-circle2.jpg" alt="circle" /></div></div>
--->
 
     </div>
       <div class="trailer_body">
