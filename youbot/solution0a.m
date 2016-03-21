@@ -1,5 +1,10 @@
-function [forwBackVel, leftRightVel, rotVel, finish] = solution0a(pts, contacts, position, orientation)
+function [forwBackVel, leftRightVel, rotVel, finish] = solution0a(pts, contacts, position, orientation, varargin)
 % The control loop callback function - the example solution for task 0A
+
+    if length(varargin) ~= 1,
+         error('Wrong number of additional arguments: %d\n', length(varargin));
+    end
+    dest_x = varargin{1};
 
     % declare the persistent variable that keeps the state of the Finite
     % State Machine (FSM)
@@ -29,7 +34,7 @@ function [forwBackVel, leftRightVel, rotVel, finish] = solution0a(pts, contacts,
         forwBackVel = -1;
         leftRightVel = 0;
         rotVel = 0;
-        if position(2) < init_pos(2)-0.5,
+        if position(2) < init_pos(2)-dest_x,
             state = 'stop';
             stop_wait = 0;
             fprintf('changing FSM state to %s\n', state);

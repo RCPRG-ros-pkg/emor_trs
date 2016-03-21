@@ -1,4 +1,4 @@
-function run_simulation(callback_fun, plotData)
+function run_simulation(callback_fun, plotData, varargin)
 % youbot Illustrates the V-REP Matlab bindings.
 
 % (C) Copyright Renaud Detry 2013.
@@ -130,8 +130,7 @@ function run_simulation(callback_fun, plotData)
       %
       % EMOR exercise begin - You can write your code below
       %
-      
-      [forwBackVel, leftRightVel, rotVel, finish] = callback_fun(pts, contacts, youbotPos, youbotEuler);
+      [forwBackVel, leftRightVel, rotVel, finish] = callback_fun(pts, contacts, youbotPos, youbotEuler, varargin{:});
       
       if finish,
          pause(0.5);
