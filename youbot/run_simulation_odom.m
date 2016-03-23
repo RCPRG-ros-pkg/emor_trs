@@ -1,4 +1,4 @@
-function run_simulation(callback_fun, plotData, varargin)
+function run_simulation_odom(callback_fun, plotData, varargin)
 % youbot Illustrates the V-REP Matlab bindings.
 
 % (C) Copyright Renaud Detry 2013.
@@ -96,16 +96,25 @@ function run_simulation(callback_fun, plotData, varargin)
    %                             vrep.simx_opmode_buffer);
    %vrchk(vrep, res, true);
    %fsm = 'init';
-   
+
+   [res, youbotPos] = vrep.simxGetObjectPosition(id, h.ref, -1,...
+                                             vrep.simx_opmode_buffer);
+   vrchk(vrep, res, true);
+   [res, youbotEuler] = vrep.simxGetObjectOrientation(id, h.ref, -1,...
+                                              vrep.simx_opmode_buffer);
+   vrchk(vrep, res, true);
+
    while true,
       tic
       if vrep.simxGetConnectionId(id) == -1,
          error('Lost connection to remote API.');
       end
-   
+      
+      prev_youbotPos = youbotPos;
       [res, youbotPos] = vrep.simxGetObjectPosition(id, h.ref, -1,...
                                                 vrep.simx_opmode_buffer);
       vrchk(vrep, res, true);
+      prev_youbotEuler = youbotEuler;
       [res, youbotEuler] = vrep.simxGetObjectOrientation(id, h.ref, -1,...
                                                  vrep.simx_opmode_buffer);
       vrchk(vrep, res, true);
@@ -128,13 +137,23 @@ function run_simulation(callback_fun, plotData, varargin)
           drawnow;
       end
       
-      [forwBackVel, leftRightVel, rotVel, finish] = callback_fun(pts, contacts, youbotPos, youbotEuler, varargin{:});
+      d_youbotPos_W = youbotPos(1:2) - prev_youbotPos(1:2);
+      R_W_B = [cos(youbotEuler(3)), sin(youbotEuler(3)); -sin(youbotEuler(3)), cos(youbotEuler(3))]';
+      R_B_W = R_W_B';
+      d_youbotPos_B = R_B_W * d_youbotPos_W';
+
+      d_youbotEuler = youbotEuler(3) - prev_youbotEuler(3);
+
+      vrep.simxPauseSimulation(id, vrep.simx_opmode_oneshot);
       
+      [forwBackVel, leftRightVel, rotVel, finish] = callback_fun(pts, contacts, d_youbotPos_B, d_youbotEuler, varargin{:});
+      vrep.simxStartSimulation(id, vrep.simx_opmode_oneshot);
+
       if finish,
          pause(0.5);
          break;
       end
-      
+
       % Update wheel velocities
       res = vrep.simxPauseCommunication(id, true); vrchk(vrep, res);
       vrep.simxSetJointTargetVelocity(id, h.wheelJoints(1),...
