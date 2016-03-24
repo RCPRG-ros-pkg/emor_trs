@@ -144,10 +144,9 @@ function run_simulation_odom(callback_fun, plotData, varargin)
 
       d_youbotEuler = youbotEuler(3) - prev_youbotEuler(3);
 
-      vrep.simxPauseSimulation(id, vrep.simx_opmode_oneshot);
-      
+%      vrep.simxPauseSimulation(id, vrep.simx_opmode_oneshot);
       [forwBackVel, leftRightVel, rotVel, finish] = callback_fun(pts, contacts, d_youbotPos_B, d_youbotEuler, varargin{:});
-      vrep.simxStartSimulation(id, vrep.simx_opmode_oneshot);
+%      vrep.simxStartSimulation(id, vrep.simx_opmode_oneshot);
 
       if finish,
          pause(0.5);
