@@ -168,6 +168,17 @@ end</code>
 
 <div class="figure" style="width: 580px"><div><img style="border: 1px solid black; width: 560px" src="raster/vrep-line.jpg" alt="line" /></div></div>
 
+          <h2>Update: Important inforamtion!</h2>
+            Please Note that the regulator of angular velocity and regulators of linear velocities are independent, so the following cases are acceptable:
+            <ul>
+              <li>the robot reaches the desired orientation before reaching the desired point (as in the below picture on the left),</li>
+              <li>the robot reaches the desired point before reaching the desired orientation (as in the below picture on the right).</li>
+            </ul>
+            Still, at the end, both desired orientation and position must be reached.
+
+            <div class="figure" style="width: 580px"><div><img style="border: 1px solid black; width: 270px" src="raster/vrep-line2.png" alt="line2" />
+            <img style="border: 1px solid black; width: 270px" src="raster/vrep-line3.png" alt="line3" /></div></div>
+
         <a id="circle" name="circle"></a>
         <h1>Moving along a circle trajectory with constant orientation</h1>
 
