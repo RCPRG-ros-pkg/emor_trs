@@ -180,6 +180,73 @@ end</code>
               <li>Particle filter (2p)</li>
             </ol>
 
+          <h2>Programming hints</h2>
+            You can use the following function to predict LIDAR sensor readings for the particles:
+<code class="block">function result = predSensors(map, x, angle, dim_x, dim_y)
+    %Prediction of LIDAR sensor readings
+    %Format:
+    %               [x y]=predSensors(map,x,angle,dim_x, dim_y)
+    %
+    %Input:
+    %               map:   the map as a matrix created by imread function
+    %               x:     the array of state vectors, where each state
+    %                      vector is [x, y, fi]
+    %               angle: the angle of the LIDAR ray (in radians)
+    %               dim_x: the size of the map in the x axis direction
+    %               dim_y: the size of the map in the y axis direction
+    %
+    %Output:
+    %               result: the vector of distances from each state
+    %               particle to the closest obstacle in the direction of
+    %               particle's orientation and ray angle
+    %
+    %Usage example:
+    %               pfnparticles = 10000;
+    %               pfx = (2*pfrandstream.rand([pfnparticles,3]) - 1) * diag([7.5, 7.5, pi]);
+    %               dist=predSensors(map, pfx, pi/4, [-7.5,7.5], [-7.5, 7.5]);
+    
+    n = [cos(x(:,3)-pi/2+angle), sin(x(:,3)-pi/2+angle)];
+
+    [x_count, ~] = size(x);
+    [map_y_size, map_x_size] = size(map);
+    ix = round( map_x_size*((x(:,1)-dim_x(1)) / (dim_x(2)- dim_x(1))) );
+    iy = round( map_y_size*((x(:,2)-dim_y(1)) / (dim_y(2)- dim_y(1))) );
+
+    result = zeros( [x_count, 1] ) - 1;
+    
+    for idx = 1:x_count
+        if ix(idx) < 1 || iy(idx) < 1 || iy(idx) > map_y_size || ix(idx) > map_x_size,
+            result(idx) = 100;
+        elseif map(iy(idx), ix(idx)) == 0,
+            result(idx) = 100;
+        end
+    end
+
+    px_size = (dim_x(2) - dim_x(1)) / map_x_size;
+    steps = 5 / px_size;
+    for i = 1:steps
+        d = (px_size * i) * n;
+        ix = round(map_x_size*(x(:,1)+d(:,1)-dim_x(1)) / (dim_x(2)- dim_x(1)));
+        iy = round(map_y_size*(x(:,2)+d(:,2)-dim_y(1)) / (dim_y(2)- dim_y(1)));
+        for idx = 1:x_count
+            if result(idx) > 0
+                continue
+            end
+            if ix(idx) < 1 || iy(idx) < 1 || iy(idx) > map_y_size || ix(idx) > map_x_size,
+                result(idx) = px_size * i;
+            elseif map(iy(idx), ix(idx)) == 0,
+                result(idx) = px_size * i;
+            end
+        end
+    end
+
+    for idx = 1:x_count
+        if result(idx) < 0
+            result(idx) = 5;
+        end
+    end
+end</code>
+
         <a id="wavefront" name="wavefront"></a>
         <h1>Path planning with Wavefront</h2>
           <p>This algorithm is responsible for finding the optimal route to the goal in the planning phase, i.e. before leaving the initial pose.
