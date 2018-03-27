@@ -157,7 +157,7 @@ function run_simulation(callback_fun, plotData, varargin)
    
       % Make sure that we do not go faster that the simulator
       elapsed = toc;
-      disp(elapsed);
+      %disp(elapsed);
       timeleft = timestep-elapsed;
       if (timeleft > 0),
          pause(min(timeleft, .01));
