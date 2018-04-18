@@ -27,10 +27,10 @@
         <a href="project1.html">Project 1</a>
         <a href="project2.html">Project 2</a>
         <a href="project3.html">Project 3</a>
-<!--          <a class="submenu" href="project3.html#loc1">Localization without LIDAR</a>
+          <a class="submenu" href="project3.html#loc1">Localization without LIDAR</a>
           <a class="submenu" href="project3.html#loc2">Localization with LIDAR</a>
           <a class="submenu" href="project3.html#wavefront">Wavefront</a>
--->
+
         <a href="api.html">API Documentation</a>
         <a href="tips.html">Tips & Tricks</a>
         <a href="troubleshooting.html">Troubleshooting</a>
@@ -38,8 +38,10 @@
 
       <div class="content">
 
-        <p>To be announced.</p>
 <!--
+        <p>To be announced.</p>
+-->
+
         <a id="info" name="info"></a>
         <a id="description" name="description"></a>
         <h1 style="margin-top: 0">Description</h1>
@@ -48,11 +50,11 @@
           The localization is implemented with the Particle Filter and the path planning is presented on the Wavefront algorithm.</p>
 
         <a id="loc1" name="loc1"></a>
-        <h1 style="margin-top: 0">Localization without the LIDAR data</h1>
+        <h1 style="margin-top: 0">Localization without LIDAR</h1>
           <p>The goal of this subtask is to write a program enabling youBot to localize itself using the particle filter.
           Otherwise than in the previous projects, it is assumed that the robot does not know its pose.
           Instead, the odometry is provided in every control step.
-          Thus, the pose of the robot must estimated by using the odometry data and the map specified.</p>
+          Thus, the pose of the robot must estimated by using odometry data and a provided map.</p>
 
           <p>The map files are shipped together with the scene files <code>*.ttt</code>. Each scene file <code>&lt;filename&gt;.ttt</code> has its map file <code>&lt;filename&gt;.png</code>.
           For more information on reading and using the map files in Matlab please see the Programming Hints section.
@@ -142,7 +144,7 @@ end</code>
             </ol>
 
         <a id="loc2" name="loc2"></a>
-        <h1 style="margin-top: 0">Localization with the LIDAR data</h1>
+        <h1 style="margin-top: 0">Localization with LIDAR</h1>
           <p>The goal of this subtask is to extend the previous subtask and to utilize the LIDAR data in the particle filter.
           The main idea is the same as in the previous subtask.
           However, the observe stage of the filter is not degenerated.
@@ -271,7 +273,6 @@ end</code>
               <li>Wavefront implementation (2p)</li>
               <li>Trajectory execution (1p)</li>
             </ol>
--->
     </div>
       <div class="trailer_body">
         <div style="width: 100%; display: table;">
