@@ -23,7 +23,8 @@
       <div id="menu">
         <a class="top" href="index.html">Introduction</a>
         <a href="setup.html">Setup</a>
-          <a class="submenu" href="setup.html#install">Installation</a>
+          <a class="submenu" href="setup.html#matlab">Matlab</a>
+          <a class="submenu" href="setup.html#install">V-Rep and Robotics Toolbox</a>
           <a class="submenu" href="setup.html#connection_testing">Testing the setup</a>
           <a class="submenu" href="setup.html#running">Running the installed system</a>
         <a href="example.html">Example project</a>
@@ -63,8 +64,31 @@ In the instructions below, the tilde <code>~</code> character stands for the hom
 
           </ul>
 
+        <a id="matlab" name="matlab"></a>
+        <h1>Matlab for WUT students</h1>
+
+          <p>
+            Please read the
+            <a href="https://www.ci.pw.edu.pl/content/download/1918/14940/file/TAH_quickstart_student.pdf">Total Student Headcount License guide</a>.
+            The activation key is
+            <a href="https://www.ci.pw.edu.pl/content/download/1630/13279/file/Klucz%20studencki_TAH.txt">here</a>.
+          </p>
+
+          <p>
+            Install the current release of Matlab, as described in the guide.
+            <b>Do not select Robotics System Toolbox in the list of products.</b>
+            The toolbox should be installed using procedure in the next section.
+          </p>
+
+          <p>
+            All above information can be found
+            <a href="https://www.ci.pw.edu.pl/Uslugi/Dystrybucja-oprogramowania/Oprogramowanie-inzynierskie/MATLAB">here</a>
+            (unfortunately, only in Polish).
+          </p>
+
+
         <a id="install" name="install"></a>
-        <h1>Installation Procedure</h1>
+        <h1>V-Rep and Robotics Toolbox</h1>
 
           <p>The recommended procedure for setting up your computer is listed below:</p>
 
@@ -96,7 +120,7 @@ git clone https://github.com/RCPRG-ros-pkg/emor_trs.git</code>
             <li>
               Download <a href="http://coppeliarobotics.com/downloads.html" target="_blank">V-REP PRO EDU</a>.
               When you're done downloading VREP, unpack it in the <code>ws_emor</code> workspace directory.
-              Delete the file <code>libv_repExtRos.so</code> from the VREP directory (<code>v_repExtRos.dll</code> on Windows version).
+              Delete the file <code>libv_repExtRos.so</code> from the VREP directory (<code>v_repExtRos.dll</code> on Windows version), if there is such file.
             </li>
             <li>
               Install the VREP bindings for Matlab:
