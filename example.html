@@ -61,18 +61,18 @@ run('startup_robot.m');</code>
                 </li>
               </ol>
             </li>
-            <li>Run V-REP simulator (Linux: type <code>./vrep.sh</code> in the V-REP's directory).</li>
+            <li>Run CoppeliaSim simulator (Linux: type <code>./coppeliaSim.sh</code> in the CoppeliaSim directory).</li>
           </ol>
 
           <p>To run the example program, follow the steps:
             <ol>
-              <li>Open scene <code>emor_trs/youbot/vrep_env/exercise00.ttt</code> in V-REP using menu <code>File</code> -> <code>Open Scene...</code></li>
+              <li>Open scene <code>emor_trs/youbot/vrep_env/exercise00.ttt</code> in CoppeliaSim using menu <code>File</code> -> <code>Open Scene...</code></li>
               <li>Type in the Matlab console:
 <code class="block">cd emor_trs/youbot
 run_simulation(@solution0a, false, 1)</code>
               </li>
             </ol>
-          The function <code>run_simulation</code> runs the V-REP simulation and the control program for the youBot robot. The control program uses the callback function
+          The function <code>run_simulation</code> runs the CoppeliaSim simulation and the control program for the youBot robot. The control program uses the callback function
           given as the first argument to <code>run_simulation</code> (in this case <code>solution0a</code>) to control the velocity of the robot.
           The callback function is called in each control cycle. It processes the sensors data and produces output: the linear and angular velocities of the robot.</p>
           <p>You can run two other examples similar way, using different control callback functions:

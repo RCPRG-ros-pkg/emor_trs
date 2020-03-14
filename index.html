@@ -22,8 +22,8 @@
     <div class="content_body">
       <div id="menu">
         <a class="top" href="index.html">Introduction</a>
-          <a class="submenu" href="index.html#about">About</a>
-<!--          <a class="submenu" href="index.html#meetings">Mettings</a>
+<!--          <a class="submenu" href="index.html#about">About</a>
+          <a class="submenu" href="index.html#meetings">Mettings</a>
           <a class="submenu" href="index.html#grading">Grading</a>
           <a class="submenu" href="index.html#projects">Projects</a>-->
         <a href="setup.html">Setup</a>
@@ -41,47 +41,63 @@
         <a id="about" name="about"></a>
         <h1>About the tutorial</h1>
           <p>This is official page constituting the tutorial of the Mobile Robots (EMOR) course at The Faculty of Electronics and Information Technology, Warsaw University of Technology, realized as TRS.</p>
+
           <p>TRS is an Open-source Recipe for Teaching/Learning Robotics with a Simulator (for more details please see <a href="http://ulgrobotics.github.io/trs" target="_blank">http://ulgrobotics.github.io/trs</a>)</p>
-          <p>For more information regarding lectures please refer to students' individual pages: <a href="http://studia.elka.pw.edu.pl" target="_blank">http://studia.elka.pw.edu.pl</a>.</p>
+
+          <p>For more information regarding lectures please refer to students' <a href="https://studia3.elka.pw.edu.pl/f-pl/20L/1130-EMARO-MSA-2004x/priv//1130-EMARO-MSA-2004x.html" target="_blank">individual pages (login required)</a>.</p>
 
           <p><b>Please visit this page frequently and check for updates!</b></p>
 
         <a id="meetings" name="meetings"></a>
 <!--        <p>To be announced.</p>-->
 
-        <h1>Meetings in the semester 19L</h1>
+        <h1>Deadlines in the semester 20L</h1>
 
-          There are six meetings in the semester:
+          <p>
+          Due to the Coronavirus pandemic, there are no meetings scheduled in the semester 20L.
+          Instead, the tutorials are realized as individual projects. The following deadlines apply:
+          <!--There are six meetings in the semester:-->
           <ol>
-            <li>20 March 2019 - <a href="setup.html">set-up</a>, announcement of <a href="project1.html">Project 1</a>, consultations</li>
-            <li>27 March 2019 - consultations, announcement of <a href="project2.html">Project 2</a></li>
-            <li>3 April 2019 - consultations, <a href="project1.html">Project 1</a> deadline, announcement of <a href="project3.html">Project 3</a></li>
-            <li>10 April 2019 - consultations</li>
-            <li>24 April 2019 - consultations, <a href="project2.html">Project 2</a> deadline</li>
-            <li>8 May 2019 - <a href="project3.html">Project 3</a> deadline</li>
+            <li>23 March 2020 - announcement of <a href="project1.html">Project 1</a>.</li>
+            <li>6 April 2020 - deadline for project 1. Announcement of <a href="project2.html">Project 2</a>.</li>
+            <li>27 April 2020 - deadline for project 2. Announcement of <a href="project3.html">Project 3</a>.</li>
+            <li>18 May 2020 - deadline for project 3.</li>
           </ol>
+          </p>
 
-          <p>Each meeting is a 4 hour workout/consultations from 12:15 to 16:00.</p>
+          <p>Please set-up your environment, as described on page <a href="setup.html">set-up</a>.</p>
+
+          <p>Missing a deadline results in discount of points for project:
+            <ol>
+              <li>the first started week of delay: the points are scaled by 0.5</li>
+              <li>the second started week: the points are scaled by 0.25</li>
+              <li>the third started week: 0 points</li>
+            </ol>
+          </p>
+
+          <p>You can ask project-related questions by e-mail:</p>
+          <img style="border: 0px solid black; width: 250px" src="raster/con.png" alt="con" />
+
+          <!--<p>Each meeting is a 4 hour workout/consultations from 12:15 to 16:00.</p>
           <p>Please consider the presented projects as your homework. Implementing during the consultations hours only may result in the sortage of time.</p>
           <p>As the time for consultations is limited, please prepare before the meeting.</p>
           <p>There are no other consultation hours.</p>
-          <p>A deadline for each project is the last meeting when you can get positive points for the solution. Missing a deadline results in 0 points for the project. The deadlines will not be extended.</p>
+          <p>A deadline for each project is the last meeting when you can get positive points for the solution. Missing a deadline results in 0 points for the project. The deadlines will not be extended.</p>-->
 
         <a id="grading" name="grading"></a>
         <h1>Grading</h1>
-          <p>The grading for each project is provided in the project page.</p>
+          <p>The grading for each project is provided in individual page of project.</p>
 
-          <p>After your project is evaluated, please send the source code (the scripts with the control callback functions) to the e-mail address:</p>
-          <img style="border: 0px solid black; width: 250px" src="raster/con.png" alt="con" />
-
+          <p>To evaluate the project, please send to the e-mail address the source codes and documentation (a report).</p>
+          <!--<img style="border: 0px solid black; width: 250px" src="raster/con.png" alt="con" />-->
 
         <a id="projects" name="projects"></a>
         <h1>About the projects</h1>
           <p>Each project is a <a href="http://www.mathworks.com/products/matlab" target="_blank">Matlab</a> program that controls a mobile robot: <a href="http://www.kuka-robotics.com/en/products/education/youbot/start.htm" target="_blank">KUKA youBot</a>.
-The program should use the data from variuos sensors to control the velocities of the robot base wheels to realize the specified task.</p>
+The program should use the data from various sensors to control the velocities of the robot base wheels to realize the specified task.</p>
 
-          <p>The robot is controlled in a simulated environment inside the <a href="http://www.coppeliarobotics.com" target="_blank">v-rep</a> simulator. The Matlab program that controls the youBot robot
-communicates with the simulated hardware using v-rep Matlab bindings. The control program may use API functions from <a href="http://petercorke.com/Robotics_Toolbox.html" target="_blank">Peter Corke's Robotics, Vision and Control toolkit</a>.</p>
+          <p>The robot is controlled in a simulated environment inside the <a href="http://www.coppeliarobotics.com" target="_blank">CoppeliaSim</a> simulator. The Matlab program that controls the youBot robot
+communicates with the simulated hardware using CoppeliaSim Matlab bindings. The control program may use API functions from <a href="http://petercorke.com/Robotics_Toolbox.html" target="_blank">Peter Corke's Robotics, Vision and Control toolkit</a>.</p>
 
           <p>The students should run the simulator and Matlab on their own laptops, as some of the work is intended to be done as homework. Linux, Windows and Mac OS operating systems are supported.</p>
 
@@ -106,7 +122,7 @@ communicates with the simulated hardware using v-rep Matlab bindings. The contro
 
             <div style="width: 50%; display: table-cell; text-align: right; vertical-align: bottom;">
               &copy; Renaud Detry 2014<br>
-              &copy; Dawid Seredyński, Tomasz Kornuta 2016<br>
+              &copy; Dawid Seredyński, Tomasz Kornuta 2016-2020<br>
               This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
             </div>
           </div>

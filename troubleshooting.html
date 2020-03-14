@@ -37,7 +37,7 @@
 
 <a id="shoot" name="shoot"></a>
 
-<h1>Troubleshooting V-REP</h1>
+<h1>Troubleshooting CoppeliaSim</h1>
 
 <h2>Avoiding Mysteriously Dangerous Calls</h2>
 
@@ -46,9 +46,9 @@
 <p>with only <b>one return value</b> crashes some versions of Matlab. Always use the multi-return call instead:</p>
 <code class="block">[res det auxData auxPacketInfo] = vrep.simxReadVisionSensor(id, hokuyo1Handle, vrep.simx_opmode_buffer);</code>
 
-<h2>V-REP Crashing at Startup, or Matlab Cannot Connect to VREP</h2>
+<h2>CoppeliaSim Crashing at Startup, or Matlab Cannot Connect to CoppeliaSim</h2>
 
-<p>When VREP quits, the port that it was using to listen for connexions is not freed immediately. If your VREP crashes when you try to start it up, or if you cannot connect to VREP from matlab, quit VREP, wait a few dozen seconds, and try again.</p>
+<p>When CoppeliaSim quits, the port that it was using to listen for connexions is not freed immediately. If your CoppeliaSim crashes when you try to start it up, or if you cannot connect to CoppeliaSim from matlab, quit CoppeliaSim, wait a few dozen seconds, and try again.</p>
 
 
 
