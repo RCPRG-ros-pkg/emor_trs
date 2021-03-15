@@ -24,36 +24,62 @@
       <div id="menu">
         <a class="top" href="index.html">Introduction</a>
         <a href="setup.html">Setup</a>
-        <a href="example.html">Example project</a>
-          <a class="submenu" href="example.html#overview">Overview</a>
-          <a class="submenu" href="example.html#running">Running the examples</a>
-        <a href="project1.html">Project 1</a>
-        <a href="project2.html">Project 2</a>
-        <a href="project3.html">Project 3</a>
+        <a class="sel" href="example.html">Example task</a>
+        <a href="task1.html">Task 1</a>
+        <a href="task2.html">Task 2</a>
+        <a href="task3.html">Task 3</a>
+        <a href="task4.html">Task 4</a>
+        <a href="task5.html">Task 5</a>
         <a href="api.html">API Documentation</a>
         <a href="tips.html">Tips & Tricks</a>
-        <a href="troubleshooting.html">Troubleshooting</a>
+        <a class="bottom" href="troubleshooting.html">Troubleshooting</a>
       </div>
 
       <div class="content">
       
         <a id="overview" name="overview"></a>
-        <h1 style="margin-top: 0">The example project</h1>
+        <h1 style="margin-top: 0">Example task</h1>
 
-          <p>Please use this description as a reference on EMOR tutorial projects. The example project consist of three subtasks:</p>
+          <p>Please use this description as a reference on EMOR tutorial tasks. The example task
+            consist of three subtasks:</p>
           <ol>
-            <li>controlling the movements of the robot,</li>
-            <li>using the sensor data to control the state of the Finite State Machine (FSM) of the robot,</li>
-            <li>using the sensor data to control the robot with proportional regulator.</li>
+            <li>Task 0.a: controlling the movements of the robot. The robot moves forward and then
+              it moves backward.</li>
+            <li>Task 0.b: using the sensor data to control the state of the Finite State Machine
+              (FSM) of the robot. The robot moves forward until the closest obstacle is at
+              distance of 0.5m.</li>
+            <li>Task 0.c: using the sensor data to control the robot with proportional regulator.
+              The robot rotates until the closest obstacle is in front of it.</li>
           </ol>
-          <p>Before running the examples you should install the environment. The description of the installation procedure can be found at <a href="setup.html">setup</a> website.
+          <p>Before running the examples you should install the environment. The description
+            of the installation procedure can be found at <a href="setup.html">setup</a> website.
+
+          <p>You can control a robot in CoppeliaSim from MATLAB using a callback function declared
+            in a script. Such script is a matlab program that declares a callback function
+            of the same name as the script, e.g. the callback function in the script
+            <code>solution0a.m</code> is named <code>solution0a</code>.
+            This callback function is called in every control loop. It processes the inputs:
+            <ul>
+              <li>the measured pose (position and orientation) of the robot,</li>
+              <li>LIDAR data, laser range sensor,</li>
+            </ul>
+            and produces the outputs that control the state of the robot:
+            <ul>
+              <li>forward/backward velocity,</li>
+              <li>left/right velocity,</li>
+              <li>rotational velocity.</li>
+            </ul>
+            <div class="figure" style="width: 98%"><div><img style="border: 1px solid black; width: 100%" src="raster/sequence_diagram.png" alt="seq_diag" /></div></div>
+            <!--<p>To run the simulation and the control program using with the callback control function <code>solution1a</code> type in the Matlab console:
+            <code>run_simulation(@solution1a, false, &lt;additional_arguments&gt; )</code>. Note that the steps from the instruction in the <a href="example.html">Example Task</a> page
+            must be followed in order to enable the communication between Matlab and CoppeliaSim. Also, the CoppeliaSim application must be running with proper scene!</p>-->
 
         <a id="running" name="running"></a>
         <h2>Running the examples</h2>
 
           <p>In order to run the already installed system please perform the following steps:</p>
           <ol class="steps">
-            <li>Run Matlab (Linux: simply type <code>matlab</code>).
+            <li>Run Matlab.
               <ol class="steps">
                 <li>In Matlab run the Peter Corke's Robotics, Vision & Control toolkit. On Linux/Mac:
                   <code class="block">cd emor_trs/matlab
@@ -61,57 +87,80 @@ run('startup_robot.m');</code>
                 </li>
               </ol>
             </li>
-            <li>Run CoppeliaSim simulator (Linux: type <code>./coppeliaSim.sh</code> in the CoppeliaSim directory).</li>
+            <li>Run CoppeliaSim simulator (Linux: type <code>./coppeliaSim.sh</code> in
+              the CoppeliaSim directory).</li>
           </ol>
 
           <p>To run the example program, follow the steps:
             <ol>
-              <li>Open scene <code>emor_trs/youbot/vrep_env/exercise00.ttt</code> in CoppeliaSim using menu <code>File</code> -> <code>Open Scene...</code></li>
+              <li>Open scene <code>emor_trs/youbot/vrep_env/exercise00.ttt</code> in CoppeliaSim
+                using menu <code>File</code> -> <code>Open Scene...</code></li>
               <li>Type in the Matlab console:
 <code class="block">cd emor_trs/youbot
 run_simulation(@solution0a, false, 1)</code>
               </li>
             </ol>
-          The function <code>run_simulation</code> runs the CoppeliaSim simulation and the control program for the youBot robot. The control program uses the callback function
-          given as the first argument to <code>run_simulation</code> (in this case <code>solution0a</code>) to control the velocity of the robot.
-          The callback function is called in each control cycle. It processes the sensors data and produces output: the linear and angular velocities of the robot.</p>
+          The function <code>run_simulation</code> runs the CoppeliaSim simulation and the control
+          program for the youBot robot. The control program uses the callback function given as
+          the first argument to <code>run_simulation</code> (in this case <code>solution0a</code>)
+          to control the velocity of the robot. The callback function is called in each control
+          cycle. It processes the sensors data and produces output: the linear and angular
+          velocities of the robot.</p>
           <p>You can run two other examples similar way, using different control callback functions:
             <ul>
-              <li>To run the second example, type in the Matlab console: <code>run_simulation(@solution0b, false)</code>,</li>
-              <li>To run the third example, type in the Matlab console: <code>run_simulation(@solution0c, false)</code>,</li>
+              <li>To run the second example, type in the Matlab console:
+                <code>run_simulation(@solution0b, false)</code>,</li>
+              <li>To run the third example, type in the Matlab console:
+                  <code>run_simulation(@solution0c, false)</code>,</li>
             </ul>
           </p>
 
-          <p>Each of the callback functions <code>solution0a</code>, <code>solution0b</code> and <code>solution0c</code> takes the same arguments:
+          <p>Each of the callback functions <code>solution0a</code>, <code>solution0b</code>
+            and <code>solution0c</code> takes the same arguments:
             <ul>
               <li>pts, contacts - the data from the LIDAR sensor,</li>
-              <li>position - the position vector of the robot. As the robot moves in the horizontal plane, only the first two coordinates are relevant (x,y),</li>
-              <li>orientation - the orientation vector of the robot represented as Euler angles. As the robot moves in the horizontal plane, only the third coordinate is relevant (z).</li>
+              <li>position - the position vector of the robot. As the robot moves in the horizontal
+                plane, only the first two coordinates are relevant (x,y),</li>
+              <li>orientation - the orientation vector of the robot represented as Euler angles.
+                As the robot moves in the horizontal plane, only the third coordinate
+                is relevant (z).</li>
             </ul>
             The values returned by each callback function are:
             <ul>
               <li><code>forwBackVel</code> - linear velocity along the x axis of the robot, </li>
               <li><code>leftRightVel</code> - linear velocity along the y axis of the robot, </li>
               <li><code>rotVel</code> - angular velocity around the z axis of the robot, </li>
-              <li><code>finish</code> - a boolean value (true/false) that indicates the control program should be stopped.</li>
+              <li><code>finish</code> - a boolean value (true/false) that indicates the control
+                program should be stopped.</li>
             </ul>
-            Such a control is possible thanks to the special construction of robot wheels - mecanum wheels enable to move a vehicle in (almost practically) any direction disregarding its current orientation.
+            Such a control is possible thanks to the special construction of robot wheels - mecanum
+            wheels enable to move a vehicle in (almost practically) any direction disregarding its
+            current orientation.
           </p>
 
-          <p>Please get familiar with the functions <code>solution0a</code>, <code>solution0b</code> and <code>solution0c</code> declared in files
-          <code>solution0a.m</code>, <code>solution0b.m</code> and <code>solution0c.m</code> respectively. Your task in all three projects is to write your own control callback functions
-          that realize the desired task. You can use the example callback functions as a reference.</p>
+          <p>Please get familiar with the functions <code>solution0a</code>,
+            <code>solution0b</code> and <code>solution0c</code> declared in files
+            <code>solution0a.m</code>, <code>solution0b.m</code> and <code>solution0c.m</code>
+            respectively. Your task in all five tasks is to write your own control callback
+            functions that realize the desired task. You can use the example callback functions
+            as a reference.</p>
 
-          <p>You should pay special attention to the Finite State Machine (FSM) that manages the behaviours realized by the robot, e.g. in the <code>solution0a</code> callback function,
-            the FSM has four states:
+          <p>You should pay special attention to the Finite State Machine (FSM) that manages
+            the behaviours realized by the robot, e.g. in the <code>solution0a</code>
+            callback function, the FSM has four states:
             <ul>
-              <li><code>init</code> - the first state, when some variables are initialized. This state is executed only once,</li>
-              <li><code>move_forward</code> - the robot moves forward, with constant velocity. This state is executed until the robot reaches the desired pose,</li>
-              <li><code>stop</code> - the robot stops - the velocity is set to zero. This state is executed for some period of time,</li>
-              <li><code>move_backward</code> - the robot moves backward, with constant velocity. This state is executed until the robot reaches the desired pose,</li>
+              <li><code>init</code> - the first state, when some variables are initialized.
+                This state is executed only once,</li>
+              <li><code>move_forward</code> - the robot moves forward, with constant velocity.
+                This state is executed until the robot reaches the desired pose,</li>
+              <li><code>stop</code> - the robot stops - the velocity is set to zero. This state
+                is executed for some period of time,</li>
+              <li><code>move_backward</code> - the robot moves backward, with constant velocity.
+                This state is executed until the robot reaches the desired pose,</li>
               <li><code>finish</code> - the ending state of the control program.</li>
             </ul>
-            The FSM enables the control system to realize complex tasks that need to execute a sequence of different behaviours, e.g. moving forward, stopping, moving backward.
+            The FSM enables the control system to realize complex tasks that need to execute
+            a sequence of different behaviours, e.g. moving forward, stopping, moving backward.
           </p>
     </div>
       <div class="trailer_body">
@@ -123,7 +172,7 @@ run_simulation(@solution0a, false, 1)</code>
 
             <div style="width: 50%; display: table-cell; text-align: right; vertical-align: bottom;">
               &copy; Renaud Detry 2014<br>
-              &copy; Dawid Seredyński, Tomasz Kornuta 2016<br>
+              &copy; Dawid Seredyński, Tomasz Kornuta 2016-2021<br>
               This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
             </div>
           </div>

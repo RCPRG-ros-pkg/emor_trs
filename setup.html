@@ -22,18 +22,16 @@
     <div class="content_body">
       <div id="menu">
         <a class="top" href="index.html">Introduction</a>
-        <a href="setup.html">Setup</a>
-          <a class="submenu" href="setup.html#matlab">Matlab</a>
-          <a class="submenu" href="setup.html#install">CoppeliaSim and Robotics Toolbox</a>
-          <a class="submenu" href="setup.html#connection_testing">Testing the setup</a>
-          <a class="submenu" href="setup.html#running">Running the installed system</a>
-        <a href="example.html">Example project</a>
-        <a href="project1.html">Project 1</a>
-        <a href="project2.html">Project 2</a>
-        <a href="project3.html">Project 3</a>
+        <a class="sel" href="setup.html">Setup</a>
+        <a href="example.html">Example task</a>
+        <a href="task1.html">Task 1</a>
+        <a href="task2.html">Task 2</a>
+        <a href="task3.html">Task 3</a>
+        <a href="task4.html">Task 4</a>
+        <a href="task5.html">Task 5</a>
         <a href="api.html">API Documentation</a>
         <a href="tips.html">Tips & Tricks</a>
-        <a href="troubleshooting.html">Troubleshooting</a>
+        <a class="bottom" href="troubleshooting.html">Troubleshooting</a>
       </div>
 
       <div class="content">
@@ -60,10 +58,11 @@
             <li>The installation process needs to be slightly adapted to your platform (Linux, Mac, Win), and to your Matlab version. At each step of the install procedure, I provide a set of commands that are tailored to a 64-bit Linux machine. If you use a different setup, you may have to adapt these commands.</li>
 
             <li>If you are using Windows, you can pretty much follow the directives below. However, to ease the process, I suggest you install everything in <code>C:/trs</code> instead of your home directory.<br>
-In the instructions below, the tilde <code>~</code> character stands for the home directory. If you are using Windows, use <code>C:/</code> instead of <code>~</code>. If you decide to go against this recommendation, please make sure that the path where you install the project stuff does not contain spaces, accented characters, or other non-letter characters. Letters and numbers only please.</li>
+In the instructions below, the tilde <code>~</code> character stands for the home directory. If you are using Windows, use <code>C:/</code> instead of <code>~</code>. If you decide to go against this recommendation, please make sure that the path where you install the software does not contain spaces, accented characters, or other non-letter characters. Letters and numbers only please.</li>
 
           </ul>
 
+        <hr>
         <a id="matlab" name="matlab"></a>
         <h1>Matlab for WUT students</h1>
 
@@ -87,6 +86,7 @@ In the instructions below, the tilde <code>~</code> character stands for the hom
           </p>-->
 
 
+        <hr>
         <a id="install" name="install"></a>
         <h1>CoppeliaSim and Robotics Toolbox</h1>
 
@@ -127,9 +127,9 @@ git clone https://github.com/RCPRG-ros-pkg/emor_trs.git</code>
               <ol>
                 <li>You must copy three files from the directory of the CoppeliaSim app (downloaded at the previous step) to the directory named <code>youbot</code> within your local copy of the GitHub repository. The three files you need to copy are named
                   <ul>
-                    <li><code>remApi.m</code></li>
-                    <li><code>remoteApiProto.m</code></li>
-                    <li><code>remoteApi.so</code> (if you use Linux) <strong>or</strong> <code>remoteApi.dll</code> (if you use Windows) <strong>or</strong> <code>remoteApi.dylib</code> (if you use a Mac). <strong>If you have a choice between a 32-bit or 64-bit remoteApi, pick the one that corresponds to your Matlab install (32-bit Matlab or 64-bit Matlab). If you have 32-bit Matlab, pick the 32-bit remoteApi, even if your kernel is 64-bit.</strong></li>
+                    <li><code>remApi.m</code> -- the file is located in <i>{CoppeliaSim_path}/programming/remoteApiBindings/matlab/matlab</i></li>
+                    <li><code>remoteApiProto.m</code> -- the file is located in <i>{CoppeliaSim_path}/programming/remoteApiBindings/matlab/matlab</i></li>
+                    <li><code>remoteApi.so</code> (if you use Linux) <strong>or</strong> <code>remoteApi.dll</code> (if you use Windows) <strong>or</strong> <code>remoteApi.dylib</code> (if you use a Mac). <strong>If you have a choice between a 32-bit or 64-bit remoteApi, pick the one that corresponds to your Matlab install (32-bit Matlab or 64-bit Matlab). If you have 32-bit Matlab, pick the 32-bit remoteApi, even if your kernel is 64-bit.</strong> The file is located in <i>{CoppeliaSim_path}/programming/remoteApiBindings/lib/lib</i></li>
                   </ul>
                   You will find these files in the directory containing the CoppeliaSim app. Look in the <code>programming/remoteApiBindings/lib/lib</code> and <code>programming/remoteApiBindings/matlab/matlab</code> subdirectories of the CoppeliaSim app directory (although this can change from version to version). You must copy these files to the <code>youbot</code> directory within your copy of the GitHub repo. If you closely followed the instructions above, the <code>youbot</code> directory is at <code>~/ws_emor/emor_trs/youbot</code> (Linux/Mac) or <code>C:/ws_emor/emor_trs/youbot</code> (Windows).
                 </li>
@@ -156,19 +156,21 @@ vrep.delete();</code>
 
           Please follow the instructions from the next section in order to verify whether the setup works.
 
+        <hr>
         <a id="connection_testing" name="connection_testing"></a>
         <h1>Testing the Matlab - CoppeliaSim connection</h1>
+          <p>This procedure checks if everything is installed properly. You can run it only once.</p>
           <ol class="steps">
-	        <li>Run the CoppeliaSim simulator (in Linux: <code>./coppeliaSim.sh</code> from CoppeliaSim directory)</li>
-	        <li>
-              In CoppeliaSim simulator
-	          <ol class="steps">
-		        <li>Use the menu "File/Open Scene" and open <code>~/emor_trs/youbot/vrep_env/binding_test.ttt</code>.</li>
-		        <li>Hit "Start Simulation" in the "Simulation" menu.</li>
-	          </ol>
-	        </li>
+  	        <li>Run the CoppeliaSim simulator (in Linux: <code>./coppeliaSim.sh</code> from CoppeliaSim directory)</li>
+  	        <li>
+                In CoppeliaSim simulator
+  	          <ol class="steps">
+  		        <li>Use the menu "File/Open Scene" and open <code>~/emor_trs/youbot/vrep_env/binding_test.ttt</code>.</li>
+  		        <li>Hit "Start Simulation" in the "Simulation" menu.</li>
+	            </ol>
+	         </li>
 
-        	<li> In Matlab (Linux: <code>matlab</code> from any directory)
+        	 <li> In Matlab (Linux: <code>matlab</code> from any directory)
               <ol class="steps">
                 <li>Test if the RVC toolbox works:
                   <code class="block">rotx(1)</code>
@@ -187,7 +189,7 @@ binding_test();</code>
           </ol>
           <!--If you see Matlab replying <em>Number of objects in the scene: 19</em>, everything works!-->
 
-
+        <hr>
         <a id="running" name="running"></a>
         <h1>Running the installed system</h1>
 
@@ -203,10 +205,10 @@ run('startup_robot.m');</code>
               </ol>
             </li>
             <li>Run CoppeliaSim simulator (Linux: type <code>./coppeliaSim.sh</code> in the CoppeliaSim directory).</li>
-            <li>Test Matlab - CoppeliaSim connection as described in <a class="submenu" href="setup.html#connection_testing">Testing the connection</a> section.</li>
+            <li>Load the environemnt with youBot in CoppeliaSim.</li>
           </ol>
-
-
+          Now you can run the control scripts. Please see the
+          <a href="example.html">Example Task</a>.
 </div>
       <div class="trailer_body">
         <div style="width: 100%; display: table;">
@@ -217,7 +219,7 @@ run('startup_robot.m');</code>
 
             <div style="width: 50%; display: table-cell; text-align: right; vertical-align: bottom;">
               &copy; Renaud Detry 2014<br>
-              &copy; Dawid Seredyński, Tomasz Kornuta 2016<br>
+              &copy; Dawid Seredyński, Tomasz Kornuta 2016-2021<br>
               This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
             </div>
           </div>

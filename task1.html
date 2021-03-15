@@ -24,13 +24,15 @@
       <div class="noprint" id="menu">
         <a class="top" href="index.html">Introduction</a>
         <a href="setup.html">Setup</a>
-        <a href="example.html">Example project</a>
-        <a href="project1.html">Project 1</a>
-        <a href="project2.html">Project 2</a>
-        <a href="project3.html">Project 3</a>
+        <a href="example.html">Example task</a>
+        <a class="sel" href="task1.html">Task 1</a>
+        <a href="task2.html">Task 2</a>
+        <a href="task3.html">Task 3</a>
+        <a href="task4.html">Task 4</a>
+        <a href="task5.html">Task 5</a>
         <a href="api.html">API Documentation</a>
         <a href="tips.html">Tips & Tricks</a>
-        <a href="troubleshooting.html">Troubleshooting</a>
+        <a class="bottom" href="troubleshooting.html">Troubleshooting</a>
       </div>
 
       <div class="content">
@@ -40,26 +42,16 @@
         <p>To be announced.</p>
 -->
         <a id="description" name="description"></a>
-        <h1 style="margin-top: 0">Project 1 - description</h1>
+        <h1 style="margin-top: 0">Task 1 - introduction</h1>
 
-          <p>There are two major goals of the first EMOR tutorial:</p>
-          <ol>
-            <li>Installation of the required software,</li>
-            <li>Writing two simple programs enabling youBot to move along two trajectories, i.e. a straight line and a circle.</li>
-          </ol>
-
-        <a id="install" name="install"></a>
-        <h2>Installation of the environment</h2>
-
-          During the first meeting you are supposed to install the environment, that you will use for the whole EMOR tutorials.
-          The description the installation procedure can be found at <a href="setup.html">setup</a> website.
+          <p>The main goal of the first tutorial is to learn to generate trajectories for a mobile robot.</p>
 
         <a id="generation" name="generation"></a>
         <h2>Trajectory generation</h2>
-          <p>Your homework is to prepare two scripts, responsible for:
+          <p>Your task is divided into two subtasks. You should prepare two scripts, responsible for:
           <ol>
-            <li>Generation of a straight line trajectory (3p)</li>
-            <li>Generation of a circular trajectory with constant orientation (4p)</li>
+            <li>Task 1.a: <a href="#line">Generation of a straight line trajectory</a></li>
+            <li>Task 1.b: <a href="#circle">Generation of a circular trajectory with constant orientation</a></li>
           </ol>
           The scripts should be named <code>solution1a.m</code> and <code>solution1b.m</code> respectively.
           All scripts should be in <code>~/ws_emor/emor_trs/youbot</code> directory.</p>
@@ -69,7 +61,7 @@
             This callback function is called in every control loop. It processes the inputs:
             <ul>
               <li>the measured pose (position and orientation) of the robot,</li>
-              <li>LIDAR data, laser range sensor (not used in the Project 1),</li>
+              <li>LIDAR data, laser range sensor (not used in the Task 1),</li>
             </ul>
             and produces the outputs that control the state of the robot:
             <ul>
@@ -77,33 +69,15 @@
               <li>left/right velocity,</li>
               <li>rotational velocity.</li>
             </ul>
-            You can use the example scripts presented in the <a href="example.html">Example Project</a> as a reference.</p>
+            <!--<div class="figure" style="width: 98%"><div><img style="border: 1px solid black; width: 100%" src="raster/sequence_diagram.png" alt="seq_diag" /></div></div>-->
+            You can use the example scripts presented in the <a href="example.html">Example Task</a> as a reference.</p>
             <p>To run the simulation and the control program using with the callback control function <code>solution1a</code> type in the Matlab console:
-            <code>run_simulation(@solution1a, false, &lt;additional_arguments&gt; )</code>. Note that the steps from the instruction in the <a href="example.html">Example Project</a> page
-            must be followed in order to enable the communication between Matlab and V-REP. Also, the V-REP application must be running with proper scene!</p>
+            <code>run_simulation(@solution1a, false, &lt;additional_arguments&gt; )</code>. Note that the steps from the instruction in the <a href="example.html">Example Task</a> page
+            must be followed in order to enable the communication between Matlab and CoppeliaSim. Also, the CoppeliaSim application must be running with proper scene!</p>
 
-            <h2>Programming hints</h2>
-
-              <p>Please refer to the <a href="example.html">example project</a> page.</p>
-
-              <p>The desired trajectories should be generaded by proportional regulators (P) with limited output. The example of such a regulator in pseudo-code:
-<code class="block">error_x = dest_x - measured_x
-u_x = gain_P * error_x
-if u_x > u_max then
-    u_x = u_max
-else if u_x < u_min then
-    u_x = u_min
-end</code>
-              where <code>measured_x</code> is the current value of the controlled state variable <code>x</code>, <code>dest_x</code> is its desired value, <code>error_x</code> is the error,
-              <code>gain_P</code> is the proportional regulator gain, <code>u_min</code> and <code>u_max</code> are the limits of the output <code>u_x</code>.
-              </p>
-
-              <p>The transformations of the velocities and other vectors between the reference frames (e.g. the reference frame of the robot and the reference frame of the world) are
-              described in the lectures (<a href="https://studia.elka.pw.edu.pl/file/19L/103A-ARxxx-MSA-EMOR/priv/EMOR%5Fpriv.html" target="_blank">EMOR individual students' pages</a>,
-              <a href="https://studia.elka.pw.edu.pl/file/19L/103A-ARxxx-MSA-EMOR/priv/MR_lec3.pdf" target="_blank">MR_lec3.pdf</a>, pages 3, 4, 5). You really need them in your projects!</p>
-
+        <hr>
         <a id="line" name="line"></a>
-        <h1>Following a trajectory to the destination point</h1>
+        <h1>Task 1.a: Following a trajectory to the destination point</h1>
 
           <p>The first trajectory is a straight line to the specified destination point represented as three coordinates: [x, y, fi],
           where x and y is the position of the robot in the XY plane, and fi is the orientation of the robot.
@@ -147,7 +121,7 @@ end</code>
     % TODO: manage the states of FSM
     ...
 end</code>
-          Please refer to solution <code>solution0a</code> in the <a href="example.html">Example Project</a> for more details on variable-length argument list.
+          Please refer to solution <code>solution0a</code> in the <a href="example.html">Example Task</a> for more details on variable-length argument list.
           </p>
 
           <h2>Task requirements</h2>
@@ -157,13 +131,13 @@ end</code>
               <li>Both position and orientation must be controlled.</li>
               <li>The robot must follow the shortest path: the straight line.</li>
               <li>When the destination point is reached, the function must return <code>finish=true</code> to stop the control program.</li>
-              <li>Use the environment file <code>~/emor_trs/youbot/vrep_env/exercise01.ttt</code> in V-REP simulation.</li>
+              <li>Use the environment file <code>~/emor_trs/youbot/vrep_env/exercise01.ttt</code> in CoppeliaSim simulation.</li>
             </ol>
 
-          <h2>Grading (3 points total)</h2>
+          <h2>Grading (5 points total)</h2>
             <ul>
-              <li>1p - x, y and fi coordinates regulation (proportional with limited output),</li>
-              <li>1p - using reference frames transformations.</li>
+              <li>2p - x, y and fi coordinates regulation (proportional with limited output),</li>
+              <li>2p - using reference frames transformations.</li>
               <li>1p - proper stop condition and clean exit (if all previous requirements are met).</li>
             </ul>
 
@@ -179,8 +153,9 @@ end</code>
             <div class="figure" style="width: 420px"><div><img style="border: 1px solid black; width: 200px" src="raster/vrep-line2.jpg" alt="line2" />
             <img style="border: 1px solid black; width: 200px" src="raster/vrep-line3.jpg" alt="line3" /></div></div>
 
+        <hr>
         <a id="circle" name="circle"></a>
-        <h1>Moving along a circle trajectory with constant orientation</h1>
+        <h1>Task 1.b: Moving along a circle trajectory with constant orientation</h1>
 
           <p>The second trajectory the youBot robot has to follow is a circle. The robot should keep the constant orientation while moving along a circle (as in the figure).
           The radius of the circle is passed to the control program through the variable-length argument list in the <code>run_simulation</code> function,
@@ -195,17 +170,43 @@ end</code>
               <li>The motion of the robot must be generated by P regulators with limited output.</li>
               <li>The robot can move infinitelly.</li>
               <li>The radius of circle should be equal to the value provided as an argument to the <code>run_simulation</code> function.</li>
-              <li>Use the environment file <code>~/emor_trs/youbot/vrep_env/exercise01.ttt</code> in V-REP simulation.</li>
+              <li>Use a clear environment with no obstaclesfile <code>~/emor_trs/youbot/vrep_env/exercise01.ttt</code> in CoppeliaSim simulation.</li>
             </ol>
 
-          <h2>Grading (4 points total)</h2>
+          <h2>Grading (5 points total)</h2>
             <ul>
               <li>2p - x, y regulators (proportional with limited output),</li>
               <li>1p - fi regulator (proportional with limited output).</li>
-              <li>1p - using reference frames transformations.</li>
+              <li>2p - using reference frames transformations.</li>
             </ul>
 
-<div class="figure" style="width: 300px"><div><img style="border: 1px solid black; width: 300px" src="raster/vrep-circle2.jpg" alt="circle" /></div></div>
+          <div class="figure" style="width: 300px"><div><img style="border: 1px solid black; width: 300px" src="raster/vrep-circle2.jpg" alt="circle" /></div></div>
+
+
+
+        <hr>
+        <h1>References</h1>
+            <h2>Programming hints</h2>
+
+              <p>Please refer to the <a href="example.html">Example Task</a> page.</p>
+
+              <p>The desired trajectories should be generaded by proportional regulators (P) with limited output. The example of such regulator in pseudo-code:
+<code class="block">error_x = dest_x - measured_x
+u_x = gain_P * error_x
+if u_x > u_max then
+    u_x = u_max
+else if u_x < u_min then
+    u_x = u_min
+end</code>
+              where <code>measured_x</code> is the current value of the controlled state variable <code>x</code>, <code>dest_x</code> is its desired value, <code>error_x</code> is the error,
+              <code>gain_P</code> is the proportional regulator gain, <code>u_min</code> and <code>u_max</code> are the limits of the output <code>u_x</code>.
+              </p>
+
+              <p>The transformations of the velocities and other vectors between the reference frames (e.g. the reference frame of the robot and the reference frame of the world) are
+              described in the lectures (students' individual pages for EMOR course on <a href="https://studia.elka.pw.edu.pl" target="_blank">studia</a> web server,
+              Lecture 3). You really need them in your projects!</p>
+
+
       </div>
       <div class="trailer_body">
         <div style="width: 100%; display: table;">
@@ -216,7 +217,7 @@ end</code>
 
             <div style="width: 50%; display: table-cell; text-align: right; vertical-align: bottom;">
               &copy; Renaud Detry 2014<br>
-              &copy; Dawid Seredyński, Tomasz Kornuta 2016-2020<br>
+              &copy; Dawid Seredyński, Tomasz Kornuta 2016-2021<br>
               This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
             </div>
           </div>

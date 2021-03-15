@@ -21,15 +21,17 @@
 
     <div class="content_body">
       <div id="menu">
-        <a class="top" href="index.html">Introduction</a>
+        <a class="seltop" href="index.html">Introduction</a>
         <a href="setup.html">Setup</a>
-        <a href="example.html">Example project</a>
-        <a href="project1.html">Project 1</a>
-        <a href="project2.html">Project 2</a>
-        <a href="project3.html">Project 3</a>
+        <a href="example.html">Example task</a>
+        <a href="task1.html">Task 1</a>
+        <a href="task2.html">Task 2</a>
+        <a href="task3.html">Task 3</a>
+        <a href="task4.html">Task 4</a>
+        <a href="task5.html">Task 5</a>
         <a href="api.html">API Documentation</a>
         <a href="tips.html">Tips & Tricks</a>
-        <a href="troubleshooting.html">Troubleshooting</a>
+        <a class="bottom" href="troubleshooting.html">Troubleshooting</a>
       </div>
 
       <div class="content">
@@ -40,14 +42,34 @@
 
           <p>TRS is an Open-source Recipe for Teaching/Learning Robotics with a Simulator (for more details please see <a href="http://ulgrobotics.github.io/trs" target="_blank">http://ulgrobotics.github.io/trs</a>)</p>
 
-          <p>For more information regarding lectures please refer to students' <a href="https://studia3.elka.pw.edu.pl/f-pl/20L/1130-EMARO-MSA-2004x/priv//1130-EMARO-MSA-2004x.html" target="_blank">individual pages (login required)</a>.</p>
+          <p>For more information regarding lectures please refer to students' <a href="https://studia3.elka.pw.edu.pl" target="_blank">individual pages (login required)</a>.</p>
 
           <p><b>Please visit this page frequently and check for updates!</b></p>
 
         <a id="meetings" name="meetings"></a>
 
-        <h1>Deadlines in the semester 21L</h1>
-        <p>To be announced.</p>
+        <h1>Schedule in the semester 21L</h1>
+          <p>All meetings are on Thursdays, 2:15pm - 6pm:
+            <ol>
+              <li>25th March 2021 - meeting on a <a href="task1.html">Task 1</a>.</li>
+              <li>8th April 2021 - meeting on a <a href="task2.html">Task 2</a>. Deadline for the Task 1.</li>
+              <li>22nd April 2021 - meeting on a <a href="task3.html">Task 3</a>. Deadline for the Task 2.</li>
+              <li>6th May 2021 - meeting on a <a href="task4.html">Task 4</a>. Deadline for the Task 3.</li>
+              <li>20th May 2021 - meeting on a <a href="task5.html">Task 5</a>. Deadline for the Task 4.</li>
+              <li>10th June 2021 - Deadline for the Task 5.</li>
+            </ol>
+          </p>
+
+          <p>Missing a deadline results in discount of points for project:
+            <ol>
+              <li>the first started week of delay: the points are scaled by 0.75</li>
+              <li>the second started week: the points are scaled by 0.5</li>
+              <li>the third started week: the points are scaled by 0.25</li>
+              <li>the fourth started week: 0 points</li>
+              <li>after 16th June: 0 points</li>
+            </ol>
+          </p>
+
 <!--
           <p>
           Due to the Coronavirus pandemic, there are no meetings scheduled in the semester 20L.
@@ -82,32 +104,34 @@
 
         <a id="grading" name="grading"></a>
         <h1>Grading</h1>
-          <p>The grading for each project is provided in individual page of project.</p>
+          <p>The grading for each task is provided in individual page of task.</p>
 
-          <p>To evaluate the project, please send to the e-mail address the source codes and documentation (a report).</p>
-          <!--<img style="border: 0px solid black; width: 250px" src="raster/con.png" alt="con" />-->
+          <p>To evaluate the task, please send to the e-mail address the source codes and documentation (a report).</p>
+          <img style="border: 0px solid black; width: 250px" src="raster/con.png" alt="con" />
 
-          <p>Please note that the projects are your individual work. Do not share your solutions with others, or you can get 0 points! Cheating is prohibited.</p>
+          <p>Please note that the tasks are your individual work. Do not share your solutions with others, or you can get 0 points! Cheating is prohibited.</p>
 
-        <a id="projects" name="projects"></a>
-        <h1>About the projects</h1>
-          <p>Each project is a <a href="http://www.mathworks.com/products/matlab" target="_blank">Matlab</a> program that controls a mobile robot: <a href="http://www.kuka-robotics.com/en/products/education/youbot/start.htm" target="_blank">KUKA youBot</a>.
+        <a id="tasks" name="tasks"></a>
+        <h1>About the tasks</h1>
+          <p>Each task is a <a href="http://www.mathworks.com/products/matlab" target="_blank">Matlab</a> program that controls a mobile robot: <a href="http://www.kuka-robotics.com/en/products/education/youbot/start.htm" target="_blank">KUKA YouBot</a>.
 The program should use the data from various sensors to control the velocities of the robot base wheels to realize the specified task.</p>
 
           <p>The robot is controlled in a simulated environment inside the <a href="http://www.coppeliarobotics.com" target="_blank">CoppeliaSim</a> simulator. The Matlab program that controls the youBot robot
-communicates with the simulated hardware using CoppeliaSim Matlab bindings. The control program may use API functions from <a href="http://petercorke.com/Robotics_Toolbox.html" target="_blank">Peter Corke's Robotics, Vision and Control toolkit</a>.</p>
+communicates with the simulated hardware using CoppeliaSim Matlab bindings. The control program may use API functions from <a href="https://petercorke.com/toolboxes/robotics-toolbox/" target="_blank">Peter Corke's Robotics, Vision and Control toolkit</a>.</p>
 
           <p>The students should run the simulator and Matlab on their own laptops, as some of the work is intended to be done as homework. Linux, Windows and Mac OS operating systems are supported.</p>
 
-        <p>Please refer to a page that explains how to <a href="setup.html">setup</a> a laptop to work on the project.</p>
+        <p>Please refer to a page that explains how to <a href="setup.html">setup</a> a laptop to work on the course.</p>
 
-        <p>Some informative examples of robot control programs are presented in the <a href="example.html">Example Project</a> page.</p>
+        <p>Some informative examples of robot control programs are presented in the <a href="example.html">Example task</a> page.</p>
 
-        <p>More detailed information on each project is provided on the individual pages of the projects:</p>
+        <p>More detailed information on each task is provided on the individual pages of the tasks:</p>
           <ul>
-            <li><a href="project1.html">Project 1</a></li>
-            <li><a href="project2.html">Project 2</a></li>
-            <li><a href="project3.html">Project 3</a></li>
+            <li><a href="task1.html">Task 1</a></li>
+            <li><a href="task2.html">Task 2</a></li>
+            <li><a href="task3.html">Task 3</a></li>
+            <li><a href="task4.html">Task 4</a></li>
+            <li><a href="task5.html">Task 5</a></li>
           </ul>
       </div>
 
@@ -120,7 +144,7 @@ communicates with the simulated hardware using CoppeliaSim Matlab bindings. The 
 
             <div style="width: 50%; display: table-cell; text-align: right; vertical-align: bottom;">
               &copy; Renaud Detry 2014<br>
-              &copy; Dawid Seredyński, Tomasz Kornuta 2016-2020<br>
+              &copy; Dawid Seredyński, Tomasz Kornuta 2016-2021<br>
               This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.
             </div>
           </div>

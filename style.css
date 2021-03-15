@@ -86,12 +86,35 @@ body {
   border-right: 1px solid #646464;
 }
 
+#menu a.sel {
+  font-size: 120%;
+  display: block;
+  background-color: rgb(233, 233, 0);
+  color: black;
+  width: 180px;
+  text-decoration: none;
+  padding: 5px 10px 5px 10px;
+  font-weight: bold;
+  border-left: 1px solid #646464;
+  border-right: 1px solid #646464;
+}
+
 #menu a.top {
   border-top: 1px solid #646464;
 }
 
+#menu a.seltop {
+  border-top: 1px solid #646464;
+  background-color: rgb(233, 233, 0);
+}
+
 #menu a.bottom {
   border-bottom: 1px solid #646464;
+}
+
+#menu a.selbottom {
+  border-bottom: 1px solid #646464;
+  background-color: rgb(233, 233, 0);
 }
 
 #menu a.submenu {
@@ -220,8 +243,6 @@ div.figure {
   border: thin silver solid;
   margin: 0px;
   padding: 10px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 div.figure>div {
