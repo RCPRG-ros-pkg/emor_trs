@@ -1,7 +1,7 @@
 ---
 title: Example task
-category: Setup
-order: 6
+category: References
+order: 3
 brief: Example task.
 ---
 
