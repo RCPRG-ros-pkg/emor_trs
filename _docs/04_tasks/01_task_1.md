@@ -5,15 +5,16 @@ order: 1
 brief: 
 ---
 
-To be announced.
-
 {::comment}
+To be announced.
+{:/comment}
+
 ## Introduction
 
 The main goal of the first tutorial is to learn to generate simple trajectory for a mobile robot.
 The robot should follow a desired trajectory, i.e. move along a straight line to a commanded target point and reach both the commanded position and orientation.
 
-The trajectory is a straight line to the specified destination point represented as three coordinates: [x, y, phi], where x and y is the position of the robot in the XY plane, and phi is the orientation of the robot. You need to provide the youBot with a program that allows it to move along the straight-line trajectory from the starting point to the user-defined destination point.
+The trajectory is a straight line to the specified destination point represented as three coordinates: [x, y, phi], where x and y is the position of the robot in the XY plane, and phi is the orientation of the robot. You need to provide the youBot with a program that allows it to move along the straight-line trajectory from the starting point (any starting point is possible) to the user-defined destination point.
 
 The commanded orientation (phi) may be reached before or after reaching the desired position (x,y). However, the orientation should change during the linear motion:
 
@@ -21,6 +22,7 @@ The commanded orientation (phi) may be reached before or after reaching the desi
 ![Task 1]({{ site.baseurl }}/images/vrep-line2.jpg){:width="30%"}
 ![Task 1]({{ site.baseurl }}/images/vrep-line3.jpg){:width="30%"}
 
+You can assume there are no obstacles and the destination point can be reached by moving on a straight line.
 
 ## References
 
@@ -69,7 +71,7 @@ The destination point is passed to the control program through the variable-leng
 * `false` - do not display the sensor data (simulation runs faster),
 * `1.0` - the x coordinate of the destination point is 1 meter,
 * `2.0` - the y coordinate of the destination point is 2 meters,
-* `deg2rad(90)` - the phi coordinate of the destination point (in radians, thus the conversion `deg2rad` is needed).
+* `deg2rad(90)` - the phi coordinate of the destination point (in radians, thus the conversion `deg2rad` is needed if you prefer to use degrees).
 
 Note that the steps from the instruction in the [Example Task]({{site.baseurl}}/03_references/03_example_task){:target="_blank"} page must be followed in order to enable the communication between Matlab and CoppeliaSim. Also, the CoppeliaSim application must be running with a proper scene!
 
@@ -86,15 +88,13 @@ Please Note that the regulator of angular velocity and regulators of linear velo
 * the robot reaches the desired orientation before reaching the desired point (as in the central picture)
 * the robot reaches the desired point before reaching the desired orientation (as in the picture on the right)
 
-Still, at the end, both desired orientation and position must be reached.
+Still, at the end, both desired orientation and position must be reached within some tolerance, e.g. 0.05 meters for position and 5 degrees for orientation.
 
 ## Grading
 
 You can get 5 points, including:
-* 2p - x, y and phi coordinates regulation (proportional with limited output),
-* 2p - using reference frames transformations.
-* 1p - proper stop condition and clean exit (if all previous requirements are met).
+* x, y and phi coordinates regulation (proportional with limited output)
+* using reference frames transformations
+* proper stop condition and clean exit (if all previous requirements are met)
 
 Please refer to the [Schedule]({{site.baseurl}}/01_introduction/02_schedule){:target="_blank"} page.
-
-{:/comment}

@@ -5,7 +5,7 @@ order: 4
 brief: About the tasks.
 ---
 
-There are 6 tasks that students have to do during the tutorials. Students work in pairs.
+There are 6 tasks that students have to do during the tutorials. Students work in pairs (teams of two).
 
 Each task is a [Matlab](http://www.mathworks.com/products/matlab){:target="_blank"} program that controls a mobile robot: [KUKA YouBot](https://spectrum.ieee.org/scoop-kukas-youbot){:target="_blank"}. The program should use the data from various sensors to control the velocities of the robot base wheels to realize the specified task.
 

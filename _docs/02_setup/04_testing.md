@@ -15,8 +15,8 @@ This procedure checks if everything is installed properly. You only need to run 
    2. Hit *Start Simulation* in the *Simulation* menu.
    2. Test if the Matlab bindings to CoppeliaSim work - run in Matlab Command Window:
    ```
-       cd ~/ws_emor/emor_trs/youbot
-       binding_test();
+      cd ~/ws_emor/emor_trs/youbot
+      binding_test();
    ```
    You should see the output:
 
@@ -26,7 +26,7 @@ This procedure checks if everything is installed properly. You only need to run 
 
 Test if the RVC toolbox works - run in Matlab Command Window:
 ```
-    rotx(1)
+rotx(1)
 ```
 You should see the output:
 

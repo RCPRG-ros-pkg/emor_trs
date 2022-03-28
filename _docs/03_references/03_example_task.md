@@ -33,8 +33,8 @@ In order to run the already installed system please perform the following steps:
 
 1. Run Matlab and run the Peter Corke's Robotics, Vision & Control toolkit in the Matlab Command Window, e.g. nn Linux/Mac:
 ```
-    cd emor_trs/matlab
-    run('startup_robot.m');
+   cd emor_trs/matlab
+   run('startup_robot.m');
 ```
 1. Run CoppeliaSim simulator (e.g. in Linux, run `./coppeliaSim.sh` in the CoppeliaSim directory).
 
@@ -42,8 +42,8 @@ To run the example program, follow the steps:
 1. In CoppeliaSim, open scene `emor_trs/youbot/vrep_env/exercise00.ttt` using menu *File -> Open Scene...*
 2. Run in the Matlab Command Window:
 ```
-    cd emor_trs/youbot
-    run_simulation(@solution0a, false, 1)
+   cd emor_trs/youbot
+   run_simulation(@solution0a, false, 1)
 ```
 
 The function `run_simulation` runs the CoppeliaSim simulation and the control program for the youBot robot. The control program uses the callback function given as the first argument to `run_simulation` (in this case `solution0a`) to control the velocity of the robot. The callback function is called in each control cycle. It processes the sensors data and produces output: the linear and angular velocities of the robot.
@@ -52,11 +52,11 @@ You can run two other examples similar way, using different control callback fun
 
 * To run the second example, type in the Matlab console:
 ```
-    run_simulation(@solution0b, false)
+   run_simulation(@solution0b, false)
 ```
 * To run the third example, type in the Matlab console:
 ```
-    run_simulation(@solution0c, false)
+   run_simulation(@solution0c, false)
 ```
 
 Each of the callback functions `solution0a`, `solution0b` and `solution0c` takes the same arguments:
