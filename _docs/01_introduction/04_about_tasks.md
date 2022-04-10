@@ -7,6 +7,8 @@ brief: About the tasks.
 
 There are 6 tasks that students have to do during the tutorials. Students work in pairs (teams of two).
 
+A complete solution for a task is the source code and a report.
+
 Each task is a [Matlab](http://www.mathworks.com/products/matlab){:target="_blank"} program that controls a mobile robot: [KUKA YouBot](https://spectrum.ieee.org/scoop-kukas-youbot){:target="_blank"}. The program should use the data from various sensors to control the velocities of the robot base wheels to realize the specified task.
 
 More detailed information on each task is provided on the individual pages of the tasks.

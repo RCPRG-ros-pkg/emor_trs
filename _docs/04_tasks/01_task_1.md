@@ -97,4 +97,6 @@ You can get 5 points, including:
 * using reference frames transformations
 * proper stop condition and clean exit (if all previous requirements are met)
 
-Please refer to the [Schedule]({{site.baseurl}}/01_introduction/02_schedule){:target="_blank"} page.
+A complete solution for a task is the source code and a report.
+
+Please refer to the [Schedule]({{site.baseurl}}/01_introduction/02_schedule){:target="_blank"} page for consultation dates and deadlines.

@@ -7,6 +7,12 @@ brief: About the tutorial
 
 This is official page constituting the tutorial of the Mobile Robots (EMOR) course at The Faculty of Electronics and Information Technology, Warsaw University of Technology.
 
+The aim of tutorials is to apply in practice the theoretical knowledge you learn on the lectures.
+There are three importatnt things about tutorials:
+* tasks - there are 6 tasks from a simple motion generation to complex navigation algorithms and motion planning
+* consultations - there are 6 meetings where you can ask questions about the tasks (please refer to [Schedule]({{site.baseurl}}/01_introduction/02_schedule){:target="_blank"})
+* deadlines - you should complete tasks within those dates (please refer to [Schedule]({{site.baseurl}}/01_introduction/02_schedule){:target="_blank"})
+
 For more information regarding lectures please refer to students' individual pages at
 [studia server](https://studia.elka.pw.edu.pl/EN/22L){:target="_blank"} (log-in is required).
 
