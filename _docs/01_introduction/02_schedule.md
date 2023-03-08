@@ -34,7 +34,7 @@ Consultations are:
 * on Thursdays, 12:15-16:00.
 * held in room P109 in the basement
 
-If you cannot attend during the scheduled dates, you can contact the tutor through e-mail (please see the [Contact]({{site.baseurl}}/01_introduction/03_contact){:target="_blank"} page) or MS Teams. Individual meetings out of schedule are also possible.
+If you cannot attend during the scheduled dates, you can contact the tutor through e-mail (please see the [Contact]({{site.baseurl}}/01_introduction/03_contact){:target="_blank"} page) or MS Teams.
 
 
 ## Deadlines
