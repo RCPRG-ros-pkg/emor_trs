@@ -13,12 +13,12 @@ if ~exist(robotpath,'dir') & ~exist('rtbdemo'),
     files = { 'contrib.zip',  'contrib2.zip',  'vision-3.3.zip', 'robot-9.8.zip' };
     for i = 1:4,
       fprintf('Downloading %s...\n', files{i});
-      unzip(sprintf('http://renaud-detry.net/teaching/info0948/data/%s', files{i}));
+      % The original link is dead: http://renaud-detry.net/teaching/info0948/data
+      unzip(sprintf('https://rcprg-ros-pkg.github.io/emor_trs/public/data/%s', files{i}));
       fprintf('Downloading %s: done.\n', files{i});
     end
   end
 end
-
 if exist(robotpath,'dir')
     run(fullfile(robotpath, 'startup_rvc.m'));
 end
