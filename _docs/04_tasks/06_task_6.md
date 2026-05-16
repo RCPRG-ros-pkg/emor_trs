@@ -63,7 +63,7 @@ The inverse conversion can be easily calculated. Please note that the indexing o
 
 All environments span from -7.5m to 7.5m in both x and y directions, and the size of all maps is 100 by 100.
 
-Use plots to visualise the state of particle filter. Please refer to the plotting and image drawing API for Matlab:
+Use plots to visualise the state of the wavefront planner. Please refer to the plotting and image drawing API for Matlab:
 * ([http://www.mathworks.com/help/matlab/ref/plot.html](http://www.mathworks.com/help/matlab/ref/plot.html){:target="_blank"}
 * ([http://www.mathworks.com/help/images/ref/imshow.html](http://www.mathworks.com/help/images/ref/imshow.html){:target="_blank"}
 
