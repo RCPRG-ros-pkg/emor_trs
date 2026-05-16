@@ -68,7 +68,7 @@ Use plots to visualise the state of the wavefront planner. Please refer to the p
 * ([http://www.mathworks.com/help/images/ref/imshow.html](http://www.mathworks.com/help/images/ref/imshow.html){:target="_blank"}
 
 Information on plotting an image in the background of a plot is avaiable on the page:
-* [https://www.mathworks.com/help/map/create-plots-over-basemap-images.html](https://www.mathworks.com/help/map/create-plots-over-basemap-images.html.){:target="_blank"}
+* [https://www.mathworks.com/help/map/create-plots-over-basemap-images.html](https://www.mathworks.com/help/map/create-plots-over-basemap-images.html){:target="_blank"}
 
 
 ## Task requirements
